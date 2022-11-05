@@ -1,5 +1,6 @@
 <script lang="ts">
-
+import TopHeader from "./components/TopHeader.vue"
+console.log(TopHeader)
 export default {
     components: {
         
@@ -8,9 +9,7 @@ export default {
 </script>
 
 <template>
-    <header>
-        HELLO
-    </header>
+    <TopHeader/>
 </template>
 
 <style>
