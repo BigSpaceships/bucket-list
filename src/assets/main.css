@@ -1,8 +1,7 @@
 body {
-  height: 100vh;
-  margin: 0;
+  background-color: black;
 }
 
-#app {
-  margin: 0;
+* {
+  color: #eee;
 }

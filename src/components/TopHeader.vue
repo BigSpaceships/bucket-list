@@ -1,13 +1,11 @@
 <template>
     <header>
-        Hello
+        Bucket List (:
     </header>
 </template>
 
 <style>
     header {
-        background-color: darkslategray;
-        color: #eee;
         text-align: center;
         font-size: 2em
     }

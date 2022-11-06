@@ -1,15 +1,11 @@
-<script lang="ts">
+<script setup lang="ts">
 import TopHeader from "./components/TopHeader.vue"
-console.log(TopHeader)
-export default {
-    components: {
-        
-    }
-}
+import { RouterView, RouterLink } from "vue-router";
 </script>
 
 <template>
     <TopHeader/>
+    <RouterView/>
 </template>
 
 <style>
