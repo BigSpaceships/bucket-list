@@ -1,7 +1,24 @@
+:root {
+    --outline-text-color: #eee;
+    --accent-color: #b35642;
+    --background-color: black;
+}
+
 body {
-  background-color: black;
+    background-color: black;
 }
 
 * {
-  color: #eee;
+    color: #eee;
+}
+
+input, button {
+    all: unset;
+}
+
+button {
+    border: 2px solid var(--accent-color);
+    border-radius: 2px;
+    padding: 2px;
+    
 }

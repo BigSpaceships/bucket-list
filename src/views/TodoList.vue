@@ -1,12 +1,18 @@
 <script lang="ts">
+import ListItem from "../components/ListItem.vue";
 let id = 0;
 
-type Todo = {
+export type Todo = {
     id: number;
     text: string;
+    completed: boolean;
+    date?: Date;
 }
 
 export default {
+    components: {
+        ListItem
+    },
     data() {
         return {
             newTodo: "",
@@ -18,22 +24,31 @@ export default {
             this.todoList.push({
                 id: id++,
                 text: this.newTodo,
+                completed: false,
+                date: undefined,
             })
             this.newTodo = ""
+        },
+        toggleCompleted(todo: Todo) {
+            todo.completed = !todo.completed;
+            
+            if (todo.completed) {
+                todo.date = new Date(Date.now());
+            }
         }
-    }
+    },
 }
 </script>
 
 <template>
+
+    <ListItem v-for="todo in todoList" 
+    :key="todo.id"
+    :todoItem="todo"
+    @toggleCompleted="toggleCompleted(todo)"/>
+    
     <form @submit.prevent="addTodo">
         <input v-model="newTodo">
         <button>Add Todo</button>
     </form>
-
-    <ul>
-        <li v-for="todo in todoList" :key="todo.id">
-            {{ todo.text }}
-        </li>
-    </ul>
 </template>
