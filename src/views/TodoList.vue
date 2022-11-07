@@ -31,24 +31,36 @@ export default {
         },
         toggleCompleted(todo: Todo) {
             todo.completed = !todo.completed;
-            
+
             if (todo.completed) {
                 todo.date = new Date(Date.now());
             }
         }
     },
+    mounted() {
+        this.todoList.push({
+            id: id++,
+            text: "Hello",
+            completed: false,
+            date: undefined,
+        })
+    }
 }
 </script>
 
 <template>
+    <div id="todoList">
+        <ListItem v-for="todo in todoList" :key="todo.id" :todoItem="todo" @toggleCompleted="toggleCompleted(todo)" />
+    </div>
 
-    <ListItem v-for="todo in todoList" 
-    :key="todo.id"
-    :todoItem="todo"
-    @toggleCompleted="toggleCompleted(todo)"/>
-    
     <form @submit.prevent="addTodo">
         <input v-model="newTodo">
         <button>Add Todo</button>
     </form>
 </template>
+
+<style>
+#todoList {
+    
+}
+</style>
