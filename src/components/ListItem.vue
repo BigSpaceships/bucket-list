@@ -25,10 +25,12 @@ export default defineComponent({
     <div class="border" @click="$emit('toggleCompleted')">
         <svg height="50px">
             <g v-if="!todoItem?.completed">
-                <circle cx="50%" cy="50%" r="10" style="fill:none; stroke: var(--accent-color); stroke-width: 2"></circle>
+                <circle cx="50%" cy="50%" r="10" style="fill:none; stroke: var(--accent-color); stroke-width: 2">
+                </circle>
             </g>
             <g v-else>
-                <circle cx="50%" cy="50%" r="10" style="fill: var(--accent-color); stroke: var(--accent-color); stroke-width: 2"></circle>
+                <circle cx="50%" cy="50%" r="10"
+                    style="fill: var(--accent-color); stroke: var(--accent-color); stroke-width: 2"></circle>
                 <polyline points="20,25 24,29 31,22" style="fill:none; stroke: #444; stroke-width: 3"></polyline>
             </g>
         </svg>
@@ -37,7 +39,7 @@ export default defineComponent({
                 todoItem?.date?.toLocaleDateString("en-US")
         }}</i></span>
     </div>
-    <br/>
+    <br />
 </template>
 
 <style>
@@ -53,15 +55,12 @@ export default defineComponent({
 
     align-items: center;
 
-    padding-right: 15px;
-
-    max-width: 300px;
-    min-width: 300px;
+    width: -webkit-fill-available;
 
     margin: 2px;
 }
 
-.border > svg {
+.border>svg {
     aspect-ratio: 1;
 }
 
@@ -76,5 +75,7 @@ export default defineComponent({
 .date-completed {
     margin-left: auto;
     color: #eee;
+
+    margin-right: 15px;
 }
 </style>

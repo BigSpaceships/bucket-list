@@ -61,6 +61,8 @@ export default {
 
 <style>
 #todoList {
+    /* border: 2px solid var(--accent-color); */
+    border-radius: 4px;
     
 }
 </style>
