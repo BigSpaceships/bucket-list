@@ -1,40 +1,25 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-import type { Todo } from "../todos.ts";
-
-export default defineComponent({
-    props: {
-        todoItem: {
-            type: Object as () => Todo,
-        }
-    },
-    methods: {
-        // toggleCompleted: function() {
-        //     console.log(this.todoItem)
-        // }
-    },
-    emits: ["toggleCompleted"],
-    computed: {
-        dataOptions: () => { return { year: "numeric", month: "numeric", day: "numeric" } }
-    },
+<script setup lang="ts">
+import { reactive, computed } from 'vue';
+import Checkbox from './Checkbox.vue'
+import type { Todo } from "../todos";
+import { todos } from "../todos"
+    
+const props = defineProps({
+    todoId: Number
 })
+
+const todoItem = computed(() => {
+    return todos.getTodoById(props.todoId)
+});
+
+const dataOptions = computed(() => { return { year: "numeric", month: "numeric", day: "numeric" } });
 
 </script>
 
 <template>
     <div class="border">
-        <svg height="50px" @click="$emit('toggleCompleted')">
-            <g v-if="!todoItem?.completed">
-                <circle cx="50%" cy="50%" r="10" style="fill:none; stroke: var(--accent-color); stroke-width: 2">
-                </circle>
-            </g>
-            <g v-else>
-                <circle cx="50%" cy="50%" r="10"
-                    style="fill: var(--accent-color); stroke: var(--accent-color); stroke-width: 2"></circle>
-                <polyline points="20,25 24,29 31,22" style="fill:none; stroke: #444; stroke-width: 3"></polyline>
-            </g>
-        </svg>
-        <span class="overview-text" :class="{ completed: todoItem?.completed }">{{ todoItem?.text }}</span>
+        <Checkbox :id="todoId"/>
+        <span class="overview-text" :class="{ completed: todoItem?.completed }">{{ todoItem.text }}</span>
         <span class="date-completed" v-if="todoItem?.completed"> <i>completed: {{
                 todoItem?.date?.toLocaleDateString("en-US")
         }}</i></span>

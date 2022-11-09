@@ -1,10 +1,20 @@
-<script lang="ts">
+<script setup lang="ts">
+// import { computed } from 'vue';
+import { todos } from "../todos";
+import type { Todo } from "../todos";
+
+const props = defineProps({
+    id: Number
+})
     
+function toggleCompleted() {
+    todos.toggleCompleted(props.id)
+}
 </script>
 
 <template>
-<svg height="50px" @click="$emit('toggleCompleted')">
-    <g v-if="!todoItem?.completed">
+<svg height="50px" @click="toggleCompleted">
+    <g v-if="!todos.getTodoById(id).completed">
         <circle cx="50%" cy="50%" r="10" 
             style="fill:none; stroke: var(--accent-color); stroke-width: 2"></circle>
     </g>

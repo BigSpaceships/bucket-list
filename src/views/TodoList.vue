@@ -15,22 +15,7 @@ export default {
         }
     },
     methods: {
-        // addTodo() {
-        //     this.todoList.push({
-        //         id: id++,
-        //         text: this.newTodo,
-        //         completed: false,
-        //         date: undefined,
-        //     })
-        //     this.newTodo = ""
-        // },
-        // toggleCompleted(todo: Todo) {
-        //     todo.completed = !todo.completed;
-
-        //     if (todo.completed) {
-        //         todo.date = new Date(Date.now());
-        //     }
-        // }
+        
     },
     mounted() {
         todos.addTodo("Hello")
@@ -40,7 +25,7 @@ export default {
 
 <template>
     <div id="todoList">
-        <ListItem v-for="todo in todos.todoList" :key="todo.id" :todoItem="todo"/>
+        <ListItem v-for="todo in todos.todoList" :key="todo.id" :todoId="todo.id"/>
     </div>
 
     <form @submit.prevent="todos.addTodo(newTodo)">
