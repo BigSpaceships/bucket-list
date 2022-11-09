@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import type { Todo } from "../views/TodoList.vue";
+import type { Todo } from "../todos.ts";
 
 export default defineComponent({
     props: {
@@ -22,8 +22,8 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="border" @click="$emit('toggleCompleted')">
-        <svg height="50px">
+    <div class="border">
+        <svg height="50px" @click="$emit('toggleCompleted')">
             <g v-if="!todoItem?.completed">
                 <circle cx="50%" cy="50%" r="10" style="fill:none; stroke: var(--accent-color); stroke-width: 2">
                 </circle>
@@ -66,6 +66,7 @@ export default defineComponent({
 
 .overview-text {
     /* margin: 4px; */
+    height: 100%;
 }
 
 .completed {

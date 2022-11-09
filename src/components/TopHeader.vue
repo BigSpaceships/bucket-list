@@ -1,6 +1,6 @@
 <template>
     <header>
-        Bucket List (:
+        Todo (:
     </header>
 </template>
 

@@ -1,13 +1,8 @@
 <script lang="ts">
 import ListItem from "../components/ListItem.vue";
+import type { Todo } from "../todos.ts";
+import { todos } from '../todos.ts';
 let id = 0;
-
-export type Todo = {
-    id: number;
-    text: string;
-    completed: boolean;
-    date?: Date;
-}
 
 export default {
     components: {
@@ -16,44 +11,39 @@ export default {
     data() {
         return {
             newTodo: "",
-            todoList: [] as Todo[]
+            todos,
         }
     },
     methods: {
-        addTodo() {
-            this.todoList.push({
-                id: id++,
-                text: this.newTodo,
-                completed: false,
-                date: undefined,
-            })
-            this.newTodo = ""
-        },
-        toggleCompleted(todo: Todo) {
-            todo.completed = !todo.completed;
+        // addTodo() {
+        //     this.todoList.push({
+        //         id: id++,
+        //         text: this.newTodo,
+        //         completed: false,
+        //         date: undefined,
+        //     })
+        //     this.newTodo = ""
+        // },
+        // toggleCompleted(todo: Todo) {
+        //     todo.completed = !todo.completed;
 
-            if (todo.completed) {
-                todo.date = new Date(Date.now());
-            }
-        }
+        //     if (todo.completed) {
+        //         todo.date = new Date(Date.now());
+        //     }
+        // }
     },
     mounted() {
-        this.todoList.push({
-            id: id++,
-            text: "Hello",
-            completed: false,
-            date: undefined,
-        })
+        todos.addTodo("Hello")
     }
 }
 </script>
 
 <template>
     <div id="todoList">
-        <ListItem v-for="todo in todoList" :key="todo.id" :todoItem="todo" @toggleCompleted="toggleCompleted(todo)" />
+        <ListItem v-for="todo in todos.todoList" :key="todo.id" :todoItem="todo"/>
     </div>
 
-    <form @submit.prevent="addTodo">
+    <form @submit.prevent="todos.addTodo(newTodo)">
         <input v-model="newTodo">
         <button>Add Todo</button>
     </form>
