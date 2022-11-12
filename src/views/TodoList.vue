@@ -1,12 +1,14 @@
 <script lang="ts">
 import ListItem from "../components/ListItem.vue";
+import NewListItemInput from "../components/NewListItemInput.vue";
 import type { Todo } from "../todos.ts";
 import { todos } from '../todos.ts';
 let id = 0;
 
 export default {
     components: {
-        ListItem
+        ListItem,
+        NewListItemInput,
     },
     data() {
         return {
@@ -15,7 +17,10 @@ export default {
         }
     },
     methods: {
-        
+        addTodo() {
+            todos.addTodo(this.newTodo);
+            this.newTodo = "";
+        }
     },
     mounted() {
         todos.addTodo("Hello")
@@ -24,20 +29,23 @@ export default {
 </script>
 
 <template>
-    <div id="todoList">
+<div class="todoList">
+    <div>
         <ListItem v-for="todo in todos.todoList" :key="todo.id" :todoId="todo.id"/>
     </div>
-
-    <form @submit.prevent="todos.addTodo(newTodo)">
-        <input v-model="newTodo">
-        <button>Add Todo</button>
-    </form>
+    
+    <NewListItemInput/>
+</div>
 </template>
 
 <style>
-#todoList {
+.todoList {
     /* border: 2px solid var(--accent-color); */
-    border-radius: 4px;
-    
+/*     border-radius: 4px; */
+
+    display: flex;
+    flex-direction: column;
+
+/*     height: 100vh; */
 }
 </style>
