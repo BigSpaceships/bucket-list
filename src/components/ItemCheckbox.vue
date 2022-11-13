@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { computed } from 'vue';
+import { computed } from 'vue';
 import { todos } from "../todos";
 import type { Todo } from "../todos";
 
@@ -8,13 +8,23 @@ const props = defineProps({
 })
     
 function toggleCompleted() {
-    todos.toggleCompleted(props.id)
+    if (props.id) {
+        todos.toggleCompleted(props.id)
+    }
 }
+
+const todo = computed(() => {
+    if (props.id) {
+        return todos.getTodoById(props.id);
+    }
+    return todos.getDefaultTodo();
+});
+
 </script>
 
 <template>
 <svg height="50px" @click="toggleCompleted">
-    <g v-if="!todos.getTodoById(id).completed">
+    <g v-if="!todo.completed">
         <circle cx="50%" cy="50%" r="10" 
             style="fill:none; stroke: var(--accent-color); stroke-width: 2"></circle>
     </g>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
-import Checkbox from './Checkbox.vue'
+import Checkbox from './ItemCheckbox.vue'
 import type { Todo } from "../todos";
 import { todos } from "../todos"
     
@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 const todoItem = computed(() => {
+    if (props.todoId == null) return todos.getDefaultTodo();
     return todos.getTodoById(props.todoId)
 });
 

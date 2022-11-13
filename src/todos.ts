@@ -28,11 +28,14 @@ export const todos = reactive({
         })
     },
     toggleCompleted: function(id: number) {
-        let todoIndex: number = this.getTodoIndexById(id);
+        const todoIndex: number = this.getTodoIndexById(id);
         this.todoList[todoIndex].completed = !this.todoList[todoIndex].completed;
 
         if (this.todoList[todoIndex].completed) {
             this.todoList[todoIndex].date = new Date(Date.now());
         }
+    },
+    getDefaultTodo: function() {
+        return this.todoList[0];
     }
 })

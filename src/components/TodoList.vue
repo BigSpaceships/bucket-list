@@ -1,8 +1,8 @@
 <script lang="ts">
 import ListItem from "../components/ListItem.vue";
 import NewListItemInput from "../components/NewListItemInput.vue";
-import type { Todo } from "../todos.ts";
-import { todos } from '../todos.ts';
+import type { Todo } from "../todos";
+import { todos } from '../todos';
 let id = 0;
 
 export default {
