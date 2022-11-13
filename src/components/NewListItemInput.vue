@@ -34,17 +34,15 @@ form.new-list-item-input {
 
     align-items: center;
 
-/*     align-items: stretch; */
-
     margin: 2px;
 
     margin-top: auto;
-/*     align-self: flex-end; */
 }
 
 form.new-list-item-input > input {
     margin-left: 15px; 
-    
+
+    flex: 1
 }
 
 form.new-list-item-input > button {

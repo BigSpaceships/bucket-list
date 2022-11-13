@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TopHeader from "./components/TopHeader.vue"
-import TodoList from "./views/TodoList.vue";
+import TodoList from "./components/TodoList.vue";
 import ItemDetails from "./components/ItemDetails.vue";
 import { RouterView, RouterLink } from "vue-router";
 </script>
@@ -8,8 +8,7 @@ import { RouterView, RouterLink } from "vue-router";
 <template>
     <TopHeader/>
     <div class="main">
-        <TodoList/>
-        <ItemDetails/>
+        <RouterView></RouterView>
     </div>
 </template>
 
