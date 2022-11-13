@@ -10,17 +10,19 @@ function makeNewTodo() {
 </script>
 
 <template>
-<div class="new-list-item-input">
+<form class="new-list-item-input" @submit.prevent="makeNewTodo">
     <input placeholder="New Todo..." v-model="state.newInputText">
-    <svg height="50px" @click="makeNewTodo">
-        <circle cx="50%" cy="50%" r=10 class="add-item-circle"></circle>
-        <line x1=20 y1=25 x2=30 y2=25 class="add-item-line"></line>
-        <line x1=25 y1=20 x2=25 y2=30 class="add-item-line"></line>
-    </svg>
-</div>
+    <button>
+        <svg height="50px">
+            <circle cx="50%" cy="50%" r=10 class="add-item-circle"></circle>
+            <line x1=20 y1=25 x2=30 y2=25 class="add-item-line"></line>
+            <line x1=25 y1=20 x2=25 y2=30 class="add-item-line"></line>
+        </svg>
+    </button>
+</form>
 </template>
 <style>
-div.new-list-item-input {
+form.new-list-item-input {
     background-color: #222;
 
     display: inline-flex;
@@ -30,17 +32,27 @@ div.new-list-item-input {
     border: 2px solid var(--accent-color);
     border-radius: 4px;
 
+    align-items: center;
+
+/*     align-items: stretch; */
+
     margin: 2px;
 
     margin-top: auto;
 /*     align-self: flex-end; */
 }
 
-div.new-list-item-input > input {
+form.new-list-item-input > input {
     margin-left: 15px; 
+    
 }
 
-div.new-list-item-input > svg {
+form.new-list-item-input > button {
+    all: unset;
+    display:flex; /* dear god why does this work */
+}
+
+form.new-list-item-input > button > svg {
     aspect-ratio: 1;
 
     margin-left: auto;
