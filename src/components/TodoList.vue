@@ -29,9 +29,9 @@ export default {
 </script>
 
 <template>
-<div class="todoList">
-    <div>
-        <ListItem v-for="todo in todos.todoList" :key="todo.id" :todoId="todo.id"/>
+<div class="todoList" style="overflow:auto;">
+    <div v-for="todo in todos.todoList" :key="todo.id">
+        <ListItem :todoId="todo.id"/>
     </div>
     
     <NewListItemInput/>

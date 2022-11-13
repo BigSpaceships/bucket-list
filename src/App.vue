@@ -23,6 +23,8 @@ import { RouterView, RouterLink } from "vue-router";
     display: flex;
     align-items: stretch;
     flex: 1;
+
+    overflow: hidden
 }
 
 </style>
