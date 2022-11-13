@@ -1,18 +1,29 @@
 <script setup lang="ts">
 import TopHeader from "./components/TopHeader.vue"
 import TodoList from "./views/TodoList.vue";
+import ItemDetails from "./components/ItemDetails.vue";
 import { RouterView, RouterLink } from "vue-router";
 </script>
 
 <template>
     <TopHeader/>
-    <div id="main-section">
+    <div class="main">
         <TodoList/>
+        <ItemDetails/>
     </div>
 </template>
 
 <style>
-#main-section {
-    display: flexbox;
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+.main {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+}
+
 </style>

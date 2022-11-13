@@ -52,6 +52,7 @@ const dataOptions = computed(() => { return { year: "numeric", month: "numeric",
 .overview-text {
     /* margin: 4px; */
     height: 100%;
+    align-self: center;
 }
 
 .completed {
