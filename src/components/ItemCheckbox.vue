@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { todos } from "../todos";
-import type { Todo } from "../todos";
 
 const props = defineProps({
     id: Number
