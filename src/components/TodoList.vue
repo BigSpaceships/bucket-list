@@ -3,7 +3,6 @@ import ListItem from "../components/ListItem.vue";
 import NewListItemInput from "../components/NewListItemInput.vue";
 import type { Todo } from "../todos";
 import { todos } from '../todos';
-let id = 0;
 
 export default {
     components: {
@@ -29,7 +28,7 @@ export default {
 </script>
 
 <template>
-<div class="todoList" style="overflow:auto;">
+<div class="todoList">
     <div v-for="todo in todos.todoList" :key="todo.id">
         <ListItem :todoId="todo.id"/>
     </div>
@@ -43,6 +42,10 @@ export default {
     display: flex;
     flex-direction: column;
 
-    min-width: 25%
+    overflow:auto;
+
+    min-width: 25%;
+
+    padding: 4px;
 }
 </style>

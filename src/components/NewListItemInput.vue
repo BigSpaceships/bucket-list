@@ -37,6 +37,7 @@ form.new-list-item-input {
     margin: 2px;
 
     margin-top: auto;
+    bottom: 0;
 }
 
 form.new-list-item-input > input {
