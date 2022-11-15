@@ -41,6 +41,8 @@ const todoItem = computed(() => {
     align-items: center;
 
     width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
 
     margin: 2px;
 }

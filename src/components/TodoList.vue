@@ -28,9 +28,9 @@ export default {
 </script>
 
 <template>
-<div class="todoList">
-    <div v-for="todo in todos.todoList" :key="todo.id">
-        <ListItem :todoId="todo.id"/>
+<div class="todo-list">
+    <div class="todo-list-items">
+        <ListItem :todoId="todo.id" v-for="todo in todos.todoList" :key="todo.id"/>
     </div>
     
     <NewListItemInput/>
@@ -38,14 +38,16 @@ export default {
 </template>
 
 <style>
-.todoList {
+.todo-list {
     display: flex;
     flex-direction: column;
-
-    overflow:auto;
-
+    
     min-width: 25%;
 
     padding: 4px;
+}
+
+.todo-list-items {
+    overflow:auto;
 }
 </style>
