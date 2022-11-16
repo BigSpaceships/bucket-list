@@ -4,6 +4,10 @@ import {todos} from "../todos";
 const state = reactive({newInputText: ""});
 
 function makeNewTodo() {
+    if (state.newInputText == "") {
+        return; // TODO: Feedback
+    }
+    
     todos.addTodo(state.newInputText);
     state.newInputText = "";
 }
