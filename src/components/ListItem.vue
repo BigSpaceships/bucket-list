@@ -8,7 +8,7 @@ const props = defineProps({
 })
 
 const todoItem = computed(() => {
-    if (props.todoId == null) return todos.getDefaultTodo();
+    if (props.todoId == undefined) return todos.getDefaultTodo();
     return todos.getTodoById(props.todoId)
 });
 
@@ -45,10 +45,6 @@ const todoItem = computed(() => {
     width: stretch;
 
     margin: 2px;
-}
-
-.border>svg {
-    aspect-ratio: 1;
 }
 
 .overview-text {

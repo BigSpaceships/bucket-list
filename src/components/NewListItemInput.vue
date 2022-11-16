@@ -55,6 +55,8 @@ form.new-list-item-input > button > svg {
     aspect-ratio: 1;
 
     margin-left: auto;
+
+    cursor: pointer;
 }
 
 .add-item-circle {
