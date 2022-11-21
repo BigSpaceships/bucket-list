@@ -5,7 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "target": "es2016",
+    "module": "commonjs",
   },
 
   "references": [
