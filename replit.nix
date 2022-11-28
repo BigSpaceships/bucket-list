@@ -1,4 +1,5 @@
-{ pkgs }: {
+{ pkgs }: 
+{
     deps = [
         pkgs.yarn
         pkgs.esbuild
