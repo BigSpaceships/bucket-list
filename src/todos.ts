@@ -12,12 +12,21 @@ let id = 0;
 export const todos = reactive({
     todoList: [] as Todo[],
     addTodo: function(text: string) {
-        this.todoList.push({
-            id: id++,
-            text: text,
-            completed: false,
-            date: undefined,
-        })
+        fetch("https://bucket-list.bigspaceships.repl.co/api/new-todo", {
+            method: "POST",
+            body: JSON.stringify({
+                text: text
+            }),
+            headers: {
+                "content-type": "application/json"
+            }
+        }).then(response => response.json())
+            .then((response) => {
+                const newTodos = response.todos.todoList;
+
+                this.todoList = [];
+
+            });
     },
     getTodoById: function(id: number) {
         return this.todoList[this.getTodoIndexById(id)]
@@ -37,5 +46,7 @@ export const todos = reactive({
     },
     getDefaultTodo: function() {
         return this.todoList[0];
+    },
+    fromJson: function(json: string) {
     }
 })
