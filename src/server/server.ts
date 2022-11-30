@@ -1,18 +1,29 @@
 import express from "express";
-import history from "connect-history-api-fallback";
-const app = express();
+import type { Todo } from "../todos";
+import todos from "./todos";
+import bodyParser from "body-parser";
 
-// const staticFileMiddleware = express.static(__dirname);
-// app.use(staticFileMiddleware);
-// app.use(history({
-//   disableDotRule: true,
-//   verbose: true
-// }));
-// app.use(staticFileMiddleware);
+const app = express();
+app.use(bodyParser.json());
 
 app.get('/api/', (req, res) => {
     console.log("hi");
     res.send("data");
+})
+
+app.get('/api/todos', (req, res) => {
+    res.json({
+        todos: todos
+    })
+})
+
+app.post('/api/new-todo', (req, res) => {
+    const text: string = req.body['text'];
+    todos.addTodo(text);
+
+    res.json({
+        todos: todos
+    })
 })
 
 const port = 3000;
