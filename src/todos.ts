@@ -7,7 +7,7 @@ export type Todo = {
     date?: Date;
 }
 
-let id = 0;
+// let id = 0;
 
 export const todos = reactive({
     todoList: [] as Todo[],
