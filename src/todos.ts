@@ -8,11 +8,13 @@ export type Todo = {
 }
 
 // let id = 0;
+const apiURL = import.meta.env.VITE_API_URL;
 
 export const todos = reactive({
     todoList: [] as Todo[],
     addTodo: function(text: string) {
-        fetch("https://bucket-list.bigspaceships.repl.co/api/new-todo", {
+        
+        fetch(apiURL + "/api/new-todo", {
             method: "POST",
             body: JSON.stringify({
                 text: text
@@ -26,6 +28,9 @@ export const todos = reactive({
 
                 this.todoList = [];
 
+                newTodos.forEach((todoObject: Object) => {
+                    this.todoList.push(todoObject as Todo)
+                });
             });
     },
     getTodoById: function(id: number) {
@@ -47,6 +52,8 @@ export const todos = reactive({
     getDefaultTodo: function() {
         return this.todoList[0];
     },
-    fromJson: function(json: string) {
+    todoFromJson: function(jsonString: string) {
+        const todo: Todo = JSON.parse(jsonString);
+        return todo;
     }
 })
