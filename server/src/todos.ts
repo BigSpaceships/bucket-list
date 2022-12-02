@@ -1,6 +1,11 @@
-import type {Todo} from "../todos";
-
 let id = 0;
+
+export type Todo = {
+    id: number;
+    text: string;
+    completed: boolean;
+    date?: Date;
+}
 
 export default {
     todoList: [] as Todo[],

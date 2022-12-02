@@ -1,5 +1,5 @@
 import express from "express";
-import type { Todo } from "../todos";
+import type { Todo } from "./todos";
 import todos from "./todos";
 import bodyParser from "body-parser";
 
