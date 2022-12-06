@@ -6,15 +6,13 @@ export type Todo = {
     completed: boolean;
     date?: Date;
 }
+export let todoList: Todo[] = [] as Todo[];
 
-export default {
-    todoList: [] as Todo[],
-    addTodo: function(text: string) {
-        this.todoList.push({
-            id: id++,
-            text: text,
-            completed: false,
-            date: undefined,
-        })
-    }
+export function addTodo(text: string) {
+    todoList.push({
+        id: id++,
+        text: text,
+        completed: false,
+        date: undefined,
+    })
 }

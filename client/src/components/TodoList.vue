@@ -2,7 +2,7 @@
 import ListItem from "../components/ListItem.vue";
 import NewListItemInput from "../components/NewListItemInput.vue";
 // import type { Todo } from "../todos";
-import { todos } from '../todos';
+import { todos, addTodo } from '../todos';
 
 export default {
     components: {
@@ -16,13 +16,9 @@ export default {
         }
     },
     methods: {
-        addTodo() {
-            todos.addTodo(this.newTodo);
-            this.newTodo = "";
-        }
     },
     mounted() {
-        todos.addTodo("Hello")
+        addTodo("Hello")
     }
 }
 </script>

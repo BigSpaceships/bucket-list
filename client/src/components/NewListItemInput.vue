@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import {todos} from "../todos";
+import {todos, addTodo} from "../todos";
 const state = reactive({newInputText: ""});
 
 function makeNewTodo() {
@@ -8,7 +8,7 @@ function makeNewTodo() {
         return; // TODO: Feedback
     }
     
-    todos.addTodo(state.newInputText);
+    addTodo(state.newInputText);
     state.newInputText = "";
 }
 </script>
