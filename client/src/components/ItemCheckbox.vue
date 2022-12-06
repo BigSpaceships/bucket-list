@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { todos } from "../todos";
+import { todos, toggleTodoCompleted, getTodoById, getDefaultTodo } from "../todos";
 
 const props = defineProps({
     id: Number
@@ -8,15 +8,15 @@ const props = defineProps({
     
 function toggleCompleted() {
     if (props.id != undefined) {
-        todos.toggleCompleted(props.id)
+        toggleTodoCompleted(props.id)
     }
 }
 
 const todo = computed(() => {
     if (props.id != undefined) {
-        return todos.getTodoById(props.id);
+        return getTodoById(props.id);
     }
-    return todos.getDefaultTodo();
+    return getDefaultTodo();
 });
 </script>
 

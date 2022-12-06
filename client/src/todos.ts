@@ -11,11 +11,12 @@ export type Todo = {
 const apiURL = import.meta.env.VITE_API_URL;
 
 export const todos = reactive({
-    todoList: [] as Todo[],
-    getDefaultTodo: function() {
-        return this.todoList[0];
-    }
+    todoList: [] as Todo[]
 })
+
+export function getDefaultTodo() {
+    return todos.todoList[0];
+}
 
 export function addTodo(text: string): void {
     fetch(apiURL + "/api/new-todo", {
