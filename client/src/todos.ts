@@ -14,6 +14,20 @@ export const todos = reactive({
     todoList: [] as Todo[]
 })
 
+export function fetchTodos() {
+    fetch(apiURL + "/api/todos", {
+        method: "GET",
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then(response => response.json())
+    .then((response) => {
+        const newTodos = response.todos;
+
+        todos.todoList = updateAllTodos(newTodos);
+    });
+}
+
 export function getDefaultTodo() {
     return todos.todoList[0];
 }
@@ -27,12 +41,15 @@ export function addTodo(text: string): void {
         headers: {
             "content-type": "application/json"
         }
-    }).then(response => response.json())
-    .then((response) => {
-        const newTodos = response.todos;
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
 
-        todos.todoList = updateAllTodos(newTodos);
-    });
+        fetchTodos();
+    }).catch((error) => {
+        console.error(error)
+    })
 }
 
 export function getTodoById(id: number) {
@@ -64,10 +81,15 @@ export function toggleTodoCompleted(id: number) {
         headers: {
             "content-type": "application/json"
         }
-    }).then(response => response.json())
-    .then((response) => {
-        
-    })
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
+
+        fetchTodos();
+    }).catch((error) => {
+        console.error(error);
+    }) 
 }
 
 export function todoFromObject(obj: object): Todo | undefined {
@@ -79,6 +101,10 @@ export function todoFromObject(obj: object): Todo | undefined {
 
     if (todo.completed == undefined) {
         todo.completed = false;
+    }
+
+    if (todo.date != undefined) {
+        todo.date = new Date(todo.date);
     }
         
     return todo;
