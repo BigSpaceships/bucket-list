@@ -4,7 +4,7 @@ import type { Todo } from "./todos";
 import {addTodo, todoFromObject, modifyTodo, todoList, clear} from "./todos";
 import bodyParser from "body-parser";
 
-dotenv.config();
+dotenv.config({path: '.env.local'});
 console.log(process.env)
 
 const app = express();
