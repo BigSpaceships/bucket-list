@@ -6,15 +6,42 @@ export type Todo = {
     completed: boolean;
     date?: Date;
 }
+export let todoList: Todo[] = [] as Todo[];
 
-export default {
-    todoList: [] as Todo[],
-    addTodo: function(text: string) {
-        this.todoList.push({
-            id: id++,
-            text: text,
-            completed: false,
-            date: undefined,
-        })
+export function addTodo(text: string) {
+    todoList.push({
+        id: id++,
+        text: text,
+        completed: false,
+        date: undefined,
+    })
+}
+
+export function clear() {
+    todoList = [] as Todo[];
+}
+
+export function todoFromObject(obj: object): Todo | undefined {
+    const todo: Todo = obj as Todo;
+
+    if (todo.id == undefined || todo.text == undefined) {
+        return;
     }
+
+    if (todo.completed == undefined) {
+        todo.completed = false;
+    }
+        
+    return todo;
+}
+
+export function modifyTodo(todo: Todo) {
+    const index = todoList.findIndex((value: Todo, index: number) => {
+        console.log(`index ${index}, todo-id ${value.id}, todo id to check ${todoList[index].id}`)
+        // return todoList[index].id == value.id 
+    })
+
+    console.log(index);
+
+    todoList[index] = todo;
 }

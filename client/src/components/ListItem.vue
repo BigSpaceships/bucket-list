@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Checkbox from './ItemCheckbox.vue'
-import { todos } from "../todos"
+import { todos, getTodoById, getDefaultTodo} from "../todos"
     
 const props = defineProps({
     todoId: Number
 })
 
 const todoItem = computed(() => {
-    if (props.todoId == undefined) return todos.getDefaultTodo();
-    return todos.getTodoById(props.todoId)
+    if (props.todoId == undefined) return getDefaultTodo();
+    return getTodoById(props.todoId)
 });
 
 // const dataOptions = computed(() => { return { year: "numeric", month: "numeric", day: "numeric" } });
