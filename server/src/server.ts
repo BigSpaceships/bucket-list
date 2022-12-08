@@ -1,7 +1,11 @@
+import dotenv from "dotenv";
 import express from "express";
 import type { Todo } from "./todos";
 import {addTodo, todoFromObject, modifyTodo, todoList, clear} from "./todos";
 import bodyParser from "body-parser";
+
+dotenv.config();
+console.log(process.env)
 
 const app = express();
 app.use(bodyParser.json());
@@ -38,15 +42,16 @@ app.post('/api/update-todo', (req, res) => {
     res.status(200).end();
 })
 
-app.post('/api/update-todo', (req, res) => {
-    
-})
-
-app.post('/api/update-todo', (req, res) => {
-    
-})
-
 const port = 3000;
-app.listen(port,'127.0.0.1', () => {
-   console.log(`Example app listening on port ${port}!`);
-});
+const allowedIPs = process.env.HOST_IP;
+
+console.log(allowedIPs);
+if (allowedIPs !== undefined) {
+    app.listen(port, allowedIPs, () => {
+        console.log(`Example app listening on port ${port}!`);
+    });
+}
+
+// app.listen(port, '127.0.0.1', () => {
+//     console.log(`Example app listening on port ${port}!`);
+// })

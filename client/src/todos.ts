@@ -136,17 +136,17 @@ export function updateAllTodos(todos: object[]): Todo[] {
     return todoList;
 }
 
-export function updateSomeTodos(todo: object[]): Todo[] {
+export function updateSomeTodos(todosToModify: object[]): Todo[] {
     let todoList: Todo[] = todos.todoList;
 
-    todos.forEach((todo: object) => {
+    todosToModify.forEach((todo: object) => {
         const newTodo = todoFromObject(todo);
 
         if (newTodo == undefined) {
             return;
         }
 
-        todoList = updateTodo(newTodo)
+        todoList = updateTodo(newTodo, todoList);
     })
 
     return todoList;
