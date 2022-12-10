@@ -18,7 +18,7 @@ export default {
     methods: {
     },
     mounted() {
-        addTodo("Hello")
+        // addTodo("Hello")
     }
 }
 </script>

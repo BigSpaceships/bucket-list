@@ -36,12 +36,9 @@ export function todoFromObject(obj: object): Todo | undefined {
 }
 
 export function modifyTodo(todo: Todo) {
-    const index = todoList.findIndex((value: Todo, index: number) => {
-        console.log(`index ${index}, todo-id ${value.id}, todo id to check ${todoList[index].id}`)
-        // return todoList[index].id == value.id 
+    const index = todoList.findIndex((value: Todo) => {
+        return todo.id == value.id 
     })
-
-    console.log(index);
 
     todoList[index] = todo;
 }

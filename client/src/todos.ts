@@ -111,8 +111,8 @@ export function todoFromObject(obj: object): Todo | undefined {
 }
 
 export function updateTodo(todo: Todo, todoList: Todo[]): Todo[] {
-    const index = todoList.findIndex((value: Todo, index: Number) => {
-        return value.id == index;
+    const index = todoList.findIndex((value: Todo) => {
+        return value.id == todo.id;
     });
 
     const newTodoList = todoList;
