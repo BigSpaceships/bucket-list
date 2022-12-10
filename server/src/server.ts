@@ -5,7 +5,6 @@ import {addTodo, todoFromObject, modifyTodo, todoList, clear} from "./todos";
 import bodyParser from "body-parser";
 
 dotenv.config({path: '.env.local'});
-console.log(process.env)
 
 const app = express();
 app.use(bodyParser.json());
@@ -43,15 +42,18 @@ app.post('/api/update-todo', (req, res) => {
 })
 
 const port = 3000;
-const allowedIPs = process.env.HOST_IP;
+let allowedIPs = process.env.HOST_IP;
 
-console.log(allowedIPs);
-if (allowedIPs !== undefined) {
-    app.listen(port, allowedIPs, () => {
+if (allowedIPs == "ALL") {
+    app.listen(port, () => {
         console.log(`Example app listening on port ${port}!`);
     });
-}
+} else {
+    if (allowedIPs === undefined) {
+        allowedIPs = '127.0.0.1';
+    }
 
-// app.listen(port, '127.0.0.1', () => {
-//     console.log(`Example app listening on port ${port}!`);
-// })
+    app.listen(port, allowedIPs, () => {
+        console.log(`Example app listening on port ${port}!`);
+    })
+}
