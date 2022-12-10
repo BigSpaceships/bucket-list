@@ -1,32 +1,26 @@
-<script lang="ts">
+<script setup lang="ts">
+import { reactive } from "vue";
 import ListItem from "../components/ListItem.vue";
 import NewListItemInput from "../components/NewListItemInput.vue";
 // import type { Todo } from "../todos";
-import { todos, addTodo } from '../todos';
+import { todos } from '../todos';
 
-export default {
-    components: {
-        ListItem,
-        NewListItemInput,
-    },
-    data() {
-        return {
-            newTodo: "",
-            todos,
-        }
-    },
-    methods: {
-    },
-    mounted() {
-        // addTodo("Hello")
-    }
+const state = reactive({
+    selected: -1,
+})
+
+function itemSelected(id: number) {
+    state.selected = id;
 }
+
 </script>
 
 <template>
-<div class="todo-list">
+<div class="todo-list" v-on:click="itemSelected(-1)">
     <div class="todo-list-items">
-        <ListItem :todoId="todo.id" v-for="todo in todos.todoList" :key="todo.id"/>
+        <ListItem :todoId="todo.id" :selected="(todo.id == state.selected)"
+        @selected="itemSelected"
+        v-for="todo in todos.todoList" :key="todo.id"/>
     </div>
     
     <NewListItemInput/>

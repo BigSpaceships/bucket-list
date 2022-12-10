@@ -1,0 +1,9 @@
+- [x] Select active item
+- [ ] Render info about item 
+    - [ ] Name 
+    - [ ] Date completed (calender maybe?)
+    - [ ] Description 
+    - [ ] Images?
+- [ ] Hook up to database 
+- [ ] Use sockets to sync between clients
+- [ ] Delete button on hover

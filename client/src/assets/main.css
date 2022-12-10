@@ -1,11 +1,11 @@
 :root {
     --outline-text-color: #eee;
     --accent-color: #b35642;
-    --background-color: black;
+    --background-color: #222;
 }
 
 body {
-    background-color: black;
+    background-color: var(--background-color);
     margin: 0
 }
 
