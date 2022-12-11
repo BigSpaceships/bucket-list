@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import ListItem from "../components/ListItem.vue";
-import NewListItemInput from "../components/NewListItemInput.vue";
+import ListItem from "./ListItem.vue";
+import NewListItemInput from "./NewListItemInput.vue";
 // import type { Todo } from "../todos";
-import { todos } from '../todos';
+import { items } from '../items';
 
 const state = reactive({
     selected: -1,
@@ -16,11 +16,11 @@ function itemSelected(id: number) {
 </script>
 
 <template>
-<div class="todo-list" v-on:click="itemSelected(-1)">
-    <div class="todo-list-items">
-        <ListItem :todoId="todo.id" :selected="(todo.id == state.selected)"
+<div class="item-list" v-on:click="itemSelected(-1)">
+    <div class="item-list-items">
+        <ListItem :itemId="item.id" :selected="(item.id == state.selected)"
         @selected="itemSelected"
-        v-for="todo in todos.todoList" :key="todo.id"/>
+        v-for="item in items.itemList" :key="item.id"/>
     </div>
     
     <NewListItemInput/>
@@ -28,7 +28,7 @@ function itemSelected(id: number) {
 </template>
 
 <style>
-.todo-list {
+.item-list {
     display: flex;
     flex-direction: column;
     
@@ -37,7 +37,7 @@ function itemSelected(id: number) {
     padding: 4px;
 }
 
-.todo-list-items {
+.item-list-items {
     overflow:auto;
 }
 </style>

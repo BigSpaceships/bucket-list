@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { todos, toggleTodoCompleted, getTodoById, getDefaultTodo } from "../todos";
+import { toggleItemCompleted, getItemById, getDefaultItem } from "../items";
 
 const props = defineProps({
     id: Number
@@ -8,21 +8,21 @@ const props = defineProps({
     
 function toggleCompleted() {
     if (props.id != undefined) {
-        toggleTodoCompleted(props.id)
+        toggleItemCompleted(props.id)
     }
 }
 
-const todo = computed(() => {
+const item = computed(() => {
     if (props.id != undefined) {
-        return getTodoById(props.id);
+        return getItemById(props.id);
     }
-    return getDefaultTodo();
+    return getDefaultItem();
 });
 </script>
 
 <template>
 <svg height="50px" @click="toggleCompleted" class="checkbox">
-    <g v-if="!todo.completed" class="incomplete">
+    <g v-if="!item.completed" class="incomplete">
         <circle cx="50%" cy="50%" r="10"></circle>
     </g>
     <g v-else class="complete">

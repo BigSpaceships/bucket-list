@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { addTodo} from "../todos";
+import { addItem } from "../items";
 const state = reactive({newInputText: ""});
 
 const input = ref<HTMLInputElement | null>(null);
 
-function makeNewTodo() {
+function makeNewItem() {
     if (state.newInputText == "") {
         return; // TODO: Feedback
     }
     
-    addTodo(state.newInputText);
+    addItem(state.newInputText);
     state.newInputText = "";
 }
 
@@ -20,7 +20,7 @@ function selectInput() {
 </script>
 
 <template>
-<form class="new-list-item-input" @submit.prevent="makeNewTodo" v-on:click="selectInput">
+<form class="new-list-item-input" @submit.prevent="makeNewItem" v-on:click="selectInput">
     <input placeholder="New Todo..." ref="input" v-model="state.newInputText">
     <button>
         <svg height="50px">

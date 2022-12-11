@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Checkbox from './ItemCheckbox.vue'
-import { getTodoById, getDefaultTodo} from "../todos"
+import { getItemById, getDefaultItem} from "../items"
     
 const props = defineProps({
-    todoId: Number,
+    itemId: Number,
     selected: Boolean,
 })
 
@@ -12,13 +12,13 @@ const emit = defineEmits<{
     (e: "selected", id: number): void
 }>()
 
-const todoItem = computed(() => {
-    if (props.todoId == undefined) return getDefaultTodo();
-    return getTodoById(props.todoId)
+const item = computed(() => {
+    if (props.itemId == undefined) return getDefaultItem();
+    return getItemById(props.itemId)
 });
 
 function click() {
-    emit('selected', todoItem.value.id);
+    emit('selected', item.value.id);
 }
 
 // const dataOptions = computed(() => { return { year: "numeric", month: "numeric", day: "numeric" } });
@@ -26,10 +26,10 @@ function click() {
 
 <template>
     <div class="border" :class="{ selected: selected}" v-on:click.stop="click">
-        <Checkbox :id="todoId"/>
-        <span class="overview-text" :class="{ completed: todoItem?.completed }">{{ todoItem.text }}</span>
-        <span class="date-completed" v-if="todoItem?.completed"> <i>completed: {{
-                todoItem?.date?.toLocaleDateString("en-US")
+        <Checkbox :id="itemId"/>
+        <span class="overview-text" :class="{ completed: item?.completed }">{{ item.text }}</span>
+        <span class="date-completed" v-if="item?.completed"> <i>completed: {{
+                item?.date?.toLocaleDateString("en-US")
         }}</i></span>
     </div>
     <br />
