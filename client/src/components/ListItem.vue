@@ -1,31 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Checkbox from './ItemCheckbox.vue'
-import { getItemById, getDefaultItem} from "../items"
+import { getItemById, getDefaultItem, items } from "../items"
     
 const props = defineProps({
     itemId: Number,
-    selected: Boolean,
 })
-
-const emit = defineEmits<{
-    (e: "selected", id: number): void
-}>()
 
 const item = computed(() => {
     if (props.itemId == undefined) return getDefaultItem();
     return getItemById(props.itemId)
 });
 
-function click() {
-    emit('selected', item.value.id);
-}
-
 // const dataOptions = computed(() => { return { year: "numeric", month: "numeric", day: "numeric" } });
 </script>
 
 <template>
-    <div class="border" :class="{ selected: selected}" v-on:click.stop="click">
+    <div class="border" :class="{ selected: itemId == items.activeIndex }" v-on:click.stop="(items.activeIndex = item.id)">
         <Checkbox :id="itemId"/>
         <span class="overview-text" :class="{ completed: item?.completed }">{{ item.text }}</span>
         <span class="date-completed" v-if="item?.completed"> <i>completed: {{

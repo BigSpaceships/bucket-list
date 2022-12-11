@@ -11,7 +11,8 @@ export type Item = {
 const apiURL = import.meta.env.VITE_API_URL;
 
 export const items = reactive({
-    itemList: [] as Item[]
+    itemList: [] as Item[],
+    activeIndex: -1,
 })
 
 export function fetchItems() {
@@ -110,7 +111,7 @@ export function itemFromObject(obj: object): Item | undefined {
     return item;
 }
 
-export function updateTodo(item: Item, itemList: Item[]): Item[] {
+export function updateItem(item: Item, itemList: Item[]): Item[] {
     const index = itemList.findIndex((value: Item) => {
         return value.id == item.id;
     });
@@ -146,7 +147,7 @@ export function updateSomeItems(itemsToModify: object[]): Item[] {
             return;
         }
 
-        itemList = updateTodo(newItem, itemList);
+        itemList = updateItem(newItem, itemList);
     })
 
     return itemList;
