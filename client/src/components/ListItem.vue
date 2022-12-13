@@ -16,7 +16,7 @@ const item = computed(() => {
 </script>
 
 <template>
-    <div class="border" :class="{ selected: itemId == items.activeIndex }" v-on:click.stop="(items.activeIndex = item.id)">
+    <div class="border" :class="{ selected: itemId == items.activeId }" v-on:click.stop="(items.activeId = item.id)">
         <Checkbox :id="itemId"/>
         <span class="overview-text" :class="{ completed: item?.completed }">{{ item.text }}</span>
         <span class="date-completed" v-if="item?.completed"> <i>completed: {{

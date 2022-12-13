@@ -1,7 +1,8 @@
 :root {
     --outline-text-color: #eee;
     --accent-color: #b35642;
-    --background-color: #222;
+    --background-color: #111;
+    --accent-background-color: #222;
 }
 
 body {

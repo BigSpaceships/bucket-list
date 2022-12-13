@@ -12,7 +12,7 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 export const items = reactive({
     itemList: [] as Item[],
-    activeIndex: -1,
+    activeId: -1,
 })
 
 export function fetchItems() {
@@ -111,15 +111,14 @@ export function itemFromObject(obj: object): Item | undefined {
     return item;
 }
 
-export function updateItem(item: Item, itemList: Item[]): Item[] {
-    const index = itemList.findIndex((value: Item) => {
+export function updateItem(item: Item) {
+
+    const index = items.itemList.findIndex((value: Item) => {
         return value.id == item.id;
     });
 
-    const newTodoList = itemList;
+    const newTodoList = items.itemList;
     newTodoList[index] = item;
-
-    return newTodoList;
 }
 
 export function updateAllItems(items: object[]): Item[] {
@@ -137,18 +136,18 @@ export function updateAllItems(items: object[]): Item[] {
     return itemList;
 }
 
-export function updateSomeItems(itemsToModify: object[]): Item[] {
-    let itemList: Item[] = items.itemList;
+// export function updateSomeItems(itemsToModify: object[]): Item[] {
+//     let itemList: Item[] = items.itemList;
 
-    itemsToModify.forEach((item: object) => {
-        const newItem = itemFromObject(item);
+//     itemsToModify.forEach((item: object) => {
+//         const newItem = itemFromObject(item);
 
-        if (newItem == undefined) {
-            return;
-        }
+//         if (newItem == undefined) {
+//             return;
+//         }
 
-        itemList = updateItem(newItem, itemList);
-    })
+//         itemList = updateItem(newItem, itemList);
+//     })
 
-    return itemList;
-}
+//     return itemList;
+// }

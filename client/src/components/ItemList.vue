@@ -10,7 +10,7 @@ fetchItems();
 </script>
 
 <template>
-<div class="item-list" v-on:click="(items.activeIndex = -1)">
+<div class="item-list" v-on:click="(items.activeId = -1)">
     <div class="item-list-items">
         <ListItem :itemId="item.id" v-for="item in items.itemList" :key="item.id"/>
     </div>
@@ -23,6 +23,10 @@ fetchItems();
 .item-list {
     display: flex;
     flex-direction: column;
+
+    background-color: var(--accent-background-color);
+
+    border-top-right-radius: 4px;
     
     min-width: 25%;
 
