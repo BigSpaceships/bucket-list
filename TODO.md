@@ -1,6 +1,6 @@
 - [x] Select active item
 - [ ] Render info about item 
-    - [ ] Name 
+    - [x] Name 
     - [ ] Date completed (calender maybe?)
     - [ ] Description 
     - [ ] Images?
