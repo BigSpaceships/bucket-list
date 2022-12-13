@@ -4,18 +4,24 @@
 // calander for when it was completed if it is completed
 
 import { getItemById, items, updateItem } from '../items';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const activeItem = computed(() => {
     return getItemById(items.activeId);
 })
+
+const nameInput = ref<HTMLInputElement | null>(null);
+
+function update() {
+    updateItem(activeItem.value);
+}
 
 </script>
 
 <template>
 <div class="item-details-block">
     <div class="details" v-if="(activeItem != undefined)">
-        <input v-model="activeItem.text" @change="updateItem(activeItem)">
+        <input v-model="activeItem.text" ref="nameInput" @change="update()" @keypress.enter.stop="nameInput?.blur()">
     </div>
 </div>
 </template>

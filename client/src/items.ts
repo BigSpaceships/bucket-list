@@ -74,23 +74,7 @@ export function toggleItemCompleted(id: number) {
         newItem.date = new Date(Date.now());
     }
 
-    fetch(apiURL + "/api/update-item", {
-        method: "POST",
-        body: JSON.stringify({
-            item: newItem,
-        }),
-        headers: {
-            "content-type": "application/json"
-        }
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error("Network response was not OK");
-        }
-
-        fetchItems();
-    }).catch((error) => {
-        console.error(error);
-    }) 
+    updateItem(newItem);
 }
 
 export function itemFromObject(obj: object): Item | undefined {
@@ -117,8 +101,25 @@ export function updateItem(item: Item) {
         return value.id == item.id;
     });
 
-    const newTodoList = items.itemList;
-    newTodoList[index] = item;
+    items.itemList[index] = item;
+
+    fetch(apiURL + "/api/update-item", {
+        method: "POST",
+        body: JSON.stringify({
+            item: item,
+        }),
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
+
+        fetchItems();
+    }).catch((error) => {
+        console.error(error);
+    })
 }
 
 export function updateAllItems(items: object[]): Item[] {
