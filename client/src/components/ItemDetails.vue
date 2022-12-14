@@ -20,7 +20,7 @@ function update() {
 
 <template>
 <div class="item-details-block">
-    <div class="details" v-if="(activeItem != undefined)">
+    <div class="details" v-if="(activeItem !== undefined)">
         <input v-model="activeItem.text" ref="nameInput" @change="update()" @keypress.enter.stop="nameInput?.blur()">
     </div>
 </div>
@@ -48,23 +48,23 @@ function update() {
 
 .details input {
     /* width: 100%; */
-    width: -webkit-fill-available;
+        width: -webkit-fill-available;
     
-    padding: 6px;
+        padding: 6px;
     
-    border: 2px dashed var(--accent-background-color);
-    border-radius: 4px;
+        border: 2px dashed var(--accent-background-color);
+        border-radius: 4px;
 
-    transition: border-color 85ms;
-    
-    transition: border-style 85ms step-end;
-}
+        transition: border-color 85ms;
+        
+        transition: border-style 85ms step-end;
+    }
 
 .details input:hover {
-    border: 2px dashed #666;
-}
+        border: 2px dashed #666;
+    }
 
 .details input:focus {
-    border: 2px solid #666;
-}
+        border: 2px solid #666;
+    }
 </style>

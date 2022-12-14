@@ -40,5 +40,9 @@ export function modifyItem(item: Item) {
         return item.id == value.id 
     })
 
+    if (index === -1) {
+        return;
+    }
+
     itemList[index] = item;
 }
