@@ -1,6 +1,7 @@
 - [x] Select active item
 - [ ] Render info about item 
     - [x] Name 
+    - [x] Delete button
     - [ ] Date completed (calender maybe?)
     - [ ] Description 
     - [ ] Images?
