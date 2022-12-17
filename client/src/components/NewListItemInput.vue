@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { addItem } from "../items";
-const state = reactive({newInputText: ""});
+const state = reactive({ newInputText: "" });
 
 const input = ref<HTMLInputElement | null>(null);
 
@@ -9,7 +9,7 @@ function makeNewItem() {
     if (state.newInputText == "") {
         return; // TODO: Feedback
     }
-    
+
     addItem(state.newInputText);
     state.newInputText = "";
 }
@@ -20,18 +20,18 @@ function selectInput() {
 </script>
 
 <template>
-<form class="new-list-item-input" @submit.prevent="makeNewItem" v-on:click="selectInput">
-    <input placeholder="New Todo..." ref="input" v-model="state.newInputText">
-    <button>
-        <svg height="50px">
-            <circle cx="50%" cy="50%" r=10 class="add-item-circle"></circle>
-            <line x1=20 y1=25 x2=30 y2=25 class="add-item-line"></line>
-            <line x1=25 y1=20 x2=25 y2=30 class="add-item-line"></line>
-        </svg>
-    </button>
-</form>
+    <form class="new-list-item-input" @submit.prevent="makeNewItem" v-on:click="selectInput">
+        <input placeholder="New Todo..." ref="input" v-model="state.newInputText">
+        <button>
+            <svg height="50px">
+                <circle cx="50%" cy="50%" r=10 class="add-item-circle"></circle>
+                <line x1=20 y1=25 x2=30 y2=25 class="add-item-line"></line>
+                <line x1=25 y1=20 x2=25 y2=30 class="add-item-line"></line>
+            </svg>
+        </button>
+    </form>
 </template>
-<style>
+<style lang="postcss">
 form.new-list-item-input {
     background-color: #222;
 
@@ -48,25 +48,28 @@ form.new-list-item-input {
 
     margin-top: auto;
     bottom: 0;
-}
 
-form.new-list-item-input > input {
-    margin-left: 15px; 
+    input {
 
-    flex: 1
-}
+        margin-left: 15px;
 
-form.new-list-item-input > button {
-    all: unset;
-    display:flex; /* dear god why does this work */
-}
+        flex: 1
+    }
 
-form.new-list-item-input > button > svg {
-    aspect-ratio: 1;
+    button {
+        all: unset;
+        display: flex;
+        /* deer god why does this work */
 
-    margin-left: auto;
+        svg {
 
-    cursor: pointer;
+            aspect-ratio: 1;
+
+            margin-left: auto;
+
+            cursor: pointer;
+        }
+    }
 }
 
 .add-item-circle {
