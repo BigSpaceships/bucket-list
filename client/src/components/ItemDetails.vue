@@ -5,7 +5,6 @@
 
 import { getItemById, items, updateItem } from '../items';
 import { computed, ref } from 'vue';
-import ItemCheckbox from './ItemCheckbox.vue';
 import DeleteIcon from './DeleteIcon.vue';
 import { deleteItem } from '../items';
 
