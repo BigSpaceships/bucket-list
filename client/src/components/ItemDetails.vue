@@ -69,7 +69,7 @@ function update() {
 
             border-radius: 4px;
 
-            transition: border-color 100ms, border-style 1ms step-end 1s; // TODO: this transition still looks weird
+            transition: border-color 100ms, border-style 1ms step-end 1s; /* TODO: this transition still looks weird */
 
             &:hover {
                 border-color: #666;
