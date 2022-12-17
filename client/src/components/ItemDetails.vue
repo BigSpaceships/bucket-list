@@ -63,20 +63,24 @@ function update() {
 
             padding: 6px;
 
-            border: 2px dashed var(--accent-background-color);
+            border-style: dashed;
+            border-width: 2px;
+            border-color: var(--accent-background-color);
+
             border-radius: 4px;
 
-            transition: border-color 85ms;
-
-            transition: border-style 85ms step-end;
+            transition: border-color 100ms, border-style 1ms step-end 1s; // TODO: this transition still looks weird
 
             &:hover {
-                border: 2px dashed #666;
+                border-color: #666;
             }
 
             &:focus {
-                border: 2px solid #666;
+                border-color: #666;
+                border-style: solid;
             }
+            
+            flex: 1;
         }
     }
 
