@@ -25,15 +25,7 @@ export function addItem(text: string): void {
         headers: {
             "content-type": "application/json"
         }
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not OK");
-        }
-
-        fetchItems();
-    }).catch((error) => {
-        console.error(error)
-    })
+    }).then(updateFromResponse);
 }
 
 export function updateItem(item: Item) {
@@ -52,15 +44,7 @@ export function updateItem(item: Item) {
         headers: {
             "content-type": "application/json"
         }
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error("Network response was not OK");
-        }
-
-        fetchItems();
-    }).catch((error) => {
-        console.error(error);
-    })
+    }).then(updateFromResponse);
 }
 
 export function updateAllItems(items: object[]): Item[] {
@@ -79,7 +63,7 @@ export function updateAllItems(items: object[]): Item[] {
 }
 
 export function toggleItemCompleted(id: number) {
-    const index =  getItemIndexById(id);
+    const index = getItemIndexById(id);
 
     const newItem = items.itemList[index];
 
@@ -90,6 +74,18 @@ export function toggleItemCompleted(id: number) {
     }
 
     updateItem(newItem);
+}
+
+export function deleteItem(id: number) {
+    fetch(apiURL + "/api/delete-item", {
+        method: "POST",
+        body: JSON.stringify({
+            id: id,
+        }),
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then(updateFromResponse);
 }
 
 // util functions 
@@ -121,8 +117,21 @@ export function itemFromObject(obj: object): Item | undefined {
     if (item.date != undefined) {
         item.date = new Date(item.date);
     }
-        
+
     return item;
+}
+
+export function updateFromResponse(response: Response) {
+    try {
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
+
+        fetchItems();
+    } 
+    catch (error) {
+        console.error(error)
+    }
 }
 
 export function fetchItems() {
@@ -132,11 +141,11 @@ export function fetchItems() {
             "content-type": "application/json"
         }
     }).then(response => response.json())
-    .then((response) => {
-        const newItems = response.items;
+        .then((response) => {
+            const newItems = response.items;
 
-        items.itemList = updateAllItems(newItems);
-    });
+            items.itemList = updateAllItems(newItems);
+        });
 }
 
 

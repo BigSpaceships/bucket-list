@@ -46,3 +46,14 @@ export function modifyItem(item: Item) {
 
     itemList[index] = item;
 }
+
+export function deleteItem(id: number) {
+    itemList.splice(getItemIndexById(id), 1);
+}
+
+// util functions 
+export function getItemIndexById(id: number) {
+    return itemList.findIndex((item: Item) => {
+        return item.id == id;
+    })
+}

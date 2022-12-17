@@ -6,6 +6,8 @@
 import { getItemById, items, updateItem } from '../items';
 import { computed, ref } from 'vue';
 import ItemCheckbox from './ItemCheckbox.vue';
+import DeleteIcon from './DeleteIcon.vue';
+import { deleteItem } from '../items';
 
 const activeItem = computed(() => {
     return getItemById(items.activeId);
@@ -16,16 +18,16 @@ const nameInput = ref<HTMLInputElement | null>(null);
 function update() {
     updateItem(activeItem.value);
 }
-
 </script>
 
 <template>
     <div class="item-details-block">
         <div class="details" v-if="(activeItem !== undefined)">
             <div class="top-bar">
-                <ItemCheckbox :id="activeItem.id"/>
+                <!-- <ItemCheckbox :id="activeItem.id"/> -->
                 <input v-model="activeItem.text" ref="nameInput" @change="update()"
                     @keypress.enter.stop="nameInput?.blur()">
+                <DeleteIcon @delete="deleteItem(items.activeId)"/>
             </div>
         </div>
     </div>

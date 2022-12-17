@@ -1,6 +1,6 @@
 import express from "express";
 import type { Item } from "./items";
-import {addItem, itemFromObject, modifyItem, itemList, clear} from "./items";
+import {addItem, clear, deleteItem, itemFromObject, itemList, modifyItem} from "./items";
 import bodyParser from "body-parser";
 
 
@@ -35,6 +35,18 @@ app.post('/api/update-item', (req, res) => {
     }
 
     modifyItem(itemToUpdate);
+
+    res.status(200).end();
+})
+
+app.post('/api/delete-item', (req, res) => {
+    const id = req.body.id;
+
+    if (isNaN(id)) {
+        return; // TODO: error
+    }
+
+    deleteItem(id);
 
     res.status(200).end();
 })
