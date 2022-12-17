@@ -19,14 +19,15 @@ function update() {
 </script>
 
 <template>
-<div class="item-details-block">
-    <div class="details" v-if="(activeItem !== undefined)">
-        <input v-model="activeItem.text" ref="nameInput" @change="update()" @keypress.enter.stop="nameInput?.blur()">
+    <div class="item-details-block">
+        <div class="details" v-if="(activeItem !== undefined)">
+            <input v-model="activeItem.text" ref="nameInput" @change="update()"
+                @keypress.enter.stop="nameInput?.blur()">
+        </div>
     </div>
-</div>
 </template>
 
-<style>
+<style lang="postcss" scoped>
 .item-details-block {
     /* flex: 1; */
     margin-left: auto;
@@ -44,27 +45,29 @@ function update() {
     text-align: center;
     font-size: 2em;
     padding: 10px;
-}
 
-.details input {
-    /* width: 100%; */
+    input {
+        /* width: 100%; */
         width: -webkit-fill-available;
-    
+
         padding: 6px;
-    
+
         border: 2px dashed var(--accent-background-color);
         border-radius: 4px;
 
         transition: border-color 85ms;
-        
+
         transition: border-style 85ms step-end;
-    }
 
-.details input:hover {
-        border: 2px dashed #666;
-    }
+        :hover {
 
-.details input:focus {
-        border: 2px solid #666;
+            border: 2px dashed #666;
+        }
+
+        :focus {
+            border: 2px solid #666;
+
+        }
     }
+}
 </style>
