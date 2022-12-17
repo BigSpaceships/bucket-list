@@ -27,11 +27,11 @@ function update() {
     </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .item-details-block {
     /* flex: 1; */
     margin-left: auto;
-    min-width: 35%;
+    width: 35%;
 
     padding: 4px;
 
@@ -42,11 +42,11 @@ function update() {
 }
 
 .details {
-    text-align: center;
-    font-size: 2em;
-    padding: 10px;
-
     input {
+        text-align: center;
+        font-size: 2em;
+        padding: 10px;
+
         /* width: 100%; */
         width: -webkit-fill-available;
 
@@ -59,14 +59,12 @@ function update() {
 
         transition: border-style 85ms step-end;
 
-        :hover {
-
+        &:hover {
             border: 2px dashed #666;
         }
 
-        :focus {
+        &:focus {
             border: 2px solid #666;
-
         }
     }
 }
