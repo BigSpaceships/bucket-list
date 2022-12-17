@@ -42,7 +42,7 @@ const item = computed(() => {
     }
 }
 
-.incomplete>circle {
+.incomplete > circle {
     fill: none;
     stroke: var(--accent-color);
     stroke-width: 2;

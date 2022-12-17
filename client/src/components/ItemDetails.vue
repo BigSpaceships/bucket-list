@@ -5,6 +5,7 @@
 
 import { getItemById, items, updateItem } from '../items';
 import { computed, ref } from 'vue';
+import ItemCheckbox from './ItemCheckbox.vue';
 
 const activeItem = computed(() => {
     return getItemById(items.activeId);
@@ -21,8 +22,11 @@ function update() {
 <template>
     <div class="item-details-block">
         <div class="details" v-if="(activeItem !== undefined)">
-            <input v-model="activeItem.text" ref="nameInput" @change="update()"
-                @keypress.enter.stop="nameInput?.blur()">
+            <div class="top-bar">
+                <ItemCheckbox :id="activeItem.id"/>
+                <input v-model="activeItem.text" ref="nameInput" @change="update()"
+                    @keypress.enter.stop="nameInput?.blur()">
+            </div>
         </div>
     </div>
 </template>
@@ -38,34 +42,41 @@ function update() {
     border-top-left-radius: 4px;
     /* border-bottom-left-radius: 4px; */
 
+
     background-color: var(--accent-background-color);
 }
 
 .details {
-    input {
-        text-align: center;
-        font-size: 2em;
-        padding: 10px;
+    padding: 10px;
 
-        /* width: 100%; */
-        width: -webkit-fill-available;
+    .top-bar {
+        display: flex;
 
-        padding: 6px;
+        input {
+            text-align: center;
+            font-size: 2em;
 
-        border: 2px dashed var(--accent-background-color);
-        border-radius: 4px;
+            /* width: 100%; */
+            /* width: -webkit-fill-available; */
 
-        transition: border-color 85ms;
+            padding: 6px;
 
-        transition: border-style 85ms step-end;
+            border: 2px dashed var(--accent-background-color);
+            border-radius: 4px;
 
-        &:hover {
-            border: 2px dashed #666;
-        }
+            transition: border-color 85ms;
 
-        &:focus {
-            border: 2px solid #666;
+            transition: border-style 85ms step-end;
+
+            &:hover {
+                border: 2px dashed #666;
+            }
+
+            &:focus {
+                border: 2px solid #666;
+            }
         }
     }
+
 }
 </style>
