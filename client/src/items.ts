@@ -15,24 +15,7 @@ export const items = reactive({
     activeId: -1,
 })
 
-export function fetchItems() {
-    fetch(apiURL + "/api/items", {
-        method: "GET",
-        headers: {
-            "content-type": "application/json"
-        }
-    }).then(response => response.json())
-    .then((response) => {
-        const newItems = response.items;
-
-        items.itemList = updateAllItems(newItems);
-    });
-}
-
-export function getDefaultItem() {
-    return items.itemList[0];
-}
-
+// modifying functions
 export function addItem(text: string): void {
     fetch(apiURL + "/api/new-item", {
         method: "POST",
@@ -51,48 +34,6 @@ export function addItem(text: string): void {
     }).catch((error) => {
         console.error(error)
     })
-}
-
-export function getItemById(id: number) {
-    return items.itemList[getItemIndexById(id)]
-}
-
-export function getItemIndexById(id: number) {
-    return items.itemList.findIndex((item: Item) => {
-        return item.id == id;
-    })
-}
-
-export function toggleItemCompleted(id: number) {
-    const index =  getItemIndexById(id);
-
-    const newItem = items.itemList[index];
-
-    newItem.completed = !newItem.completed;
-
-    if (newItem.completed) {
-        newItem.date = new Date(Date.now());
-    }
-
-    updateItem(newItem);
-}
-
-export function itemFromObject(obj: object): Item | undefined {
-    const item: Item = obj as Item;
-
-    if (item.id == undefined || item.text == undefined) {
-        return;
-    }
-
-    if (item.completed == undefined) {
-        item.completed = false;
-    }
-
-    if (item.date != undefined) {
-        item.date = new Date(item.date);
-    }
-        
-    return item;
 }
 
 export function updateItem(item: Item) {
@@ -136,6 +77,68 @@ export function updateAllItems(items: object[]): Item[] {
 
     return itemList;
 }
+
+export function toggleItemCompleted(id: number) {
+    const index =  getItemIndexById(id);
+
+    const newItem = items.itemList[index];
+
+    newItem.completed = !newItem.completed;
+
+    if (newItem.completed) {
+        newItem.date = new Date(Date.now());
+    }
+
+    updateItem(newItem);
+}
+
+// util functions 
+export function getItemById(id: number) {
+    return items.itemList[getItemIndexById(id)]
+}
+
+export function getItemIndexById(id: number) {
+    return items.itemList.findIndex((item: Item) => {
+        return item.id == id;
+    })
+}
+
+export function getDefaultItem() {
+    return items.itemList[0];
+}
+
+export function itemFromObject(obj: object): Item | undefined {
+    const item: Item = obj as Item;
+
+    if (item.id == undefined || item.text == undefined) {
+        return;
+    }
+
+    if (item.completed == undefined) {
+        item.completed = false;
+    }
+
+    if (item.date != undefined) {
+        item.date = new Date(item.date);
+    }
+        
+    return item;
+}
+
+export function fetchItems() {
+    fetch(apiURL + "/api/items", {
+        method: "GET",
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then(response => response.json())
+    .then((response) => {
+        const newItems = response.items;
+
+        items.itemList = updateAllItems(newItems);
+    });
+}
+
 
 // export function updateSomeItems(itemsToModify: object[]): Item[] {
 //     let itemList: Item[] = items.itemList;
