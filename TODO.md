@@ -7,4 +7,6 @@
     - [ ] Images?
 - [ ] Hook up to database 
 - [ ] Use sockets to sync between clients
+    - [ ] Basic
+    - [ ] Disconnect when not active
 - [ ] Delete button on hover
