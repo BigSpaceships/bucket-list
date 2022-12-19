@@ -6,7 +6,8 @@
     - [ ] Description 
     - [ ] Images?
 - [ ] Hook up to database 
-- [ ] Use sockets to sync between clients
+- [ ] Use sockets to sync between clients - FCM?
+    - [x] Really fucking crude way
     - [ ] Basic
     - [ ] Disconnect when not active
 - [ ] Delete button on hover

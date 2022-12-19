@@ -2,9 +2,7 @@ import { Express } from "express";
 import {addItem, clear, deleteItem, itemFromObject, itemList, modifyItem} from "./items";
 
 export function routes(app: Express) {
-    app.get('/api/items', (req, res) => {
-        console.log(itemList)
-        
+    app.get('/api/items', (req, res) => {        
         res.json({
             items: itemList
         })
