@@ -28,6 +28,7 @@ function update() {
                     @keypress.enter.stop="nameInput?.blur()">
                 <DeleteIcon @delete="deleteItem(items.activeId)"/>
             </div>
+            <textarea v-model="activeItem.description" @change="update()"></textarea>
         </div>
     </div>
 </template>
@@ -83,5 +84,15 @@ function update() {
         }
     }
 
+    textarea {
+        border: 2px solid #666;
+        border-radius: 4px;
+
+        margin-top: 8px;
+
+        padding: 4px;
+
+        width: -webkit-fill-available;
+    }
 }
 </style>

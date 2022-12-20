@@ -14,7 +14,7 @@ body {
     color: FloralWhite;
 }
 
-input, button {
+input, textarea, button {
     all: unset;
 }
 

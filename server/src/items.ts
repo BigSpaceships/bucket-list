@@ -5,6 +5,7 @@ export type Item = {
     text: string;
     completed: boolean;
     date?: Date;
+    description: string;
 }
 export let itemList: Item[] = [] as Item[];
 
@@ -14,6 +15,7 @@ export function addItem(text: string) {
         text: text,
         completed: false,
         date: undefined,
+        description: "",
     })
 }
 

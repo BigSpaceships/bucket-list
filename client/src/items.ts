@@ -5,6 +5,7 @@ export type Item = {
     text: string;
     completed: boolean;
     date?: Date;
+    description: string;
 }
 
 // let id = 0;
