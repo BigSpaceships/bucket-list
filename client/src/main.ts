@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { io } from 'socket.io-client'
 import App from './App.vue'
 import router from './router/router'
 import { fetchItems } from './items'
@@ -9,6 +10,9 @@ const app = createApp(App)
 
 app.use(router)
 app.mount('#app')
+
+const socket = io('http://localhost:4000');
+console.log(socket.connected)
 
 window.setInterval(() => { // TODO: this breaks things
     fetchItems(); 
