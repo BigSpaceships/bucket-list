@@ -8,6 +8,8 @@ import { computed, ref } from 'vue';
 import DeleteIcon from './DeleteIcon.vue';
 import { deleteItem } from '../items';
 
+import {useRoute} from 'vue-router';
+
 const activeItem = computed(() => {
     return getItemById(getActiveId());
 })
@@ -26,7 +28,7 @@ function update() {
                 <!-- <ItemCheckbox :id="activeItem.id"/> -->
                 <input v-model="activeItem.text" ref="nameInput" @change="update()"
                     @keypress.enter.stop="nameInput?.blur()">
-                <DeleteIcon @delete="deleteItem(getActiveId())"/>
+                <DeleteIcon @delete="deleteItem(activeItem.id)"/>
             </div>
             <textarea v-model="activeItem.description" @change="update()"></textarea>
         </div>
