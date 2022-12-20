@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import { useRoute } from "vue-router";
 
 export type Item = {
     id: number;
@@ -13,8 +14,18 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 export const items = reactive({
     itemList: [] as Item[],
-    activeId: -1,
 })
+
+export function getActiveId(): number {
+    const params = useRoute().params;
+    if (params['id'] != undefined) {
+        if (!isNaN(Number(params['id']))) {
+            return Number(params['id']);
+        }
+    }
+
+    return -1
+}
 
 // modifying functions
 export function addItem(text: string): void {

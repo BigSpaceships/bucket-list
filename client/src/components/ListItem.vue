@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Checkbox from './ItemCheckbox.vue'
-import { getItemById, getDefaultItem, items } from "../items"
+import { getActiveId, getItemById, getDefaultItem, items } from "../items"
+import router from '../router/router';
+import { toId } from '../router/router';
     
 const props = defineProps({
     itemId: Number,
@@ -16,7 +18,7 @@ const item = computed(() => {
 </script>
 
 <template>
-    <div class="border" :class="{ selected: itemId == items.activeId }" v-on:click.stop="(items.activeId = item.id)">
+    <div class="border" :class="{ selected: itemId == getActiveId() }" v-on:click.stop="toId(itemId)">
         <Checkbox :id="itemId"/>
         <span class="overview-text" :class="{ completed: item?.completed }">{{ item.text }}</span>
         <span class="date-completed" v-if="item?.completed"> <i>completed: {{

@@ -11,3 +11,5 @@
     - [ ] Basic
     - [ ] Disconnect when not active
 - [ ] Delete button on hover
+- [ ] Backgrounds
+- [x] Use routes for active items

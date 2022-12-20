@@ -4,13 +4,14 @@ import ListItem from "./ListItem.vue";
 import NewListItemInput from "./NewListItemInput.vue";
 // import type { Todo } from "../todos";
 import { items, fetchItems } from '../items';
+import { clearId } from "@/router/router";
 
 fetchItems();
 
 </script>
 
 <template>
-<div class="item-list" v-on:click="(items.activeId = -1)">
+<div class="item-list" v-on:click="clearId()">
     <div class="item-list-items">
         <ListItem :itemId="item.id" v-for="item in items.itemList" :key="item.id"/>
     </div>

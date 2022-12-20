@@ -3,13 +3,13 @@
 // have a menu with three dots for rename and delete (or maybe move it somewhere else if thats hard)
 // calander for when it was completed if it is completed
 
-import { getItemById, items, updateItem } from '../items';
+import { getActiveId, getItemById, updateItem } from '../items';
 import { computed, ref } from 'vue';
 import DeleteIcon from './DeleteIcon.vue';
 import { deleteItem } from '../items';
 
 const activeItem = computed(() => {
-    return getItemById(items.activeId);
+    return getItemById(getActiveId());
 })
 
 const nameInput = ref<HTMLInputElement | null>(null);
@@ -26,7 +26,7 @@ function update() {
                 <!-- <ItemCheckbox :id="activeItem.id"/> -->
                 <input v-model="activeItem.text" ref="nameInput" @change="update()"
                     @keypress.enter.stop="nameInput?.blur()">
-                <DeleteIcon @delete="deleteItem(items.activeId)"/>
+                <DeleteIcon @delete="deleteItem(getActiveId())"/>
             </div>
             <textarea v-model="activeItem.description" @change="update()"></textarea>
         </div>
