@@ -53,6 +53,23 @@ function update() {
 
     .top-bar {
         display: flex;
+        
+        border-style: dashed;
+        border-width: 2px;
+        border-color: var(--accent-background-color);
+
+        border-radius: 4px;
+
+        transition: border-color 100ms, border-style 1ms step-end 1s; /* TODO: this transition still looks weird */
+
+        &:hover {
+            border-color: #666;
+        }
+
+        &:focus {
+            border-color: #666;
+            border-style: solid;
+        }
 
         input {
             text-align: center;
@@ -62,23 +79,6 @@ function update() {
             /* width: -webkit-fill-available; */
 
             padding: 6px;
-
-            border-style: dashed;
-            border-width: 2px;
-            border-color: var(--accent-background-color);
-
-            border-radius: 4px;
-
-            transition: border-color 100ms, border-style 1ms step-end 1s; /* TODO: this transition still looks weird */
-
-            &:hover {
-                border-color: #666;
-            }
-
-            &:focus {
-                border-color: #666;
-                border-style: solid;
-            }
             
             flex: 1;
         }
