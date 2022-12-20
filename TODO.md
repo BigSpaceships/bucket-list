@@ -3,7 +3,7 @@
     - [x] Name 
     - [x] Delete button
     - [ ] Date completed (calender maybe?)
-    - [ ] Description 
+    - [x] Description 
     - [ ] Images?
 - [ ] Hook up to database 
 - [ ] Use sockets to sync between clients - FCM?
