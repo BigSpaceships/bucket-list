@@ -8,8 +8,6 @@ import { computed, ref } from 'vue';
 import DeleteIcon from './DeleteIcon.vue';
 import { deleteItem } from '../items';
 
-import {useRoute} from 'vue-router';
-
 const activeItem = computed(() => {
     return getItemById(getActiveId());
 })
