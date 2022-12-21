@@ -8,6 +8,7 @@
 - [ ] Hook up to database 
 - [ ] Use sockets to sync between clients - FCM?
     - [x] Really fucking crude way
+    - [x] Actually connect
     - [ ] Basic
     - [ ] Disconnect when not active
 - [ ] Delete button on hover

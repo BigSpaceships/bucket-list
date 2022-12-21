@@ -12,7 +12,6 @@ app.use(router)
 app.mount('#app')
 
 const socket = io();
-console.log(socket.connected)
 
 // window.setInterval(() => { // TODO: this breaks things
 //     fetchItems(); 

@@ -33,7 +33,7 @@ app.get("/*", (req, res) => {
 })
 
 io.on("connection", (socket) => {
-    console.log(socket.id)
+    console.log(socket.id) // TODO: figure out why this is chashing things
 })
 
 expressServer.on("upgrade", (req, socket, head) => {
