@@ -11,9 +11,9 @@ const app = createApp(App)
 app.use(router)
 app.mount('#app')
 
-const socket = io('http://localhost:4000');
+const socket = io();
 console.log(socket.connected)
 
-window.setInterval(() => { // TODO: this breaks things
-    fetchItems(); 
-},2000)
+// window.setInterval(() => { // TODO: this breaks things
+//     fetchItems(); 
+// },2000)

@@ -13,14 +13,13 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '/api': {
-                target: "http://127.0.0.1:3000",
-                rewrite: (path) => path.replace(/^\/api/, ''),
-            },
-            'socket': {
-                target: "http://127.0.0.1:4000",
-                rewrite: (path) => path.replace(/^\/socket/, ''),
-            }
+            // '/api': {
+            //     target: "http://127.0.0.1:3000",
+            // },
+            // 'socket': {
+            //     target: "http://127.0.0.1:4000",
+            //     ws: true,
+            // }
         }
     }
 })
