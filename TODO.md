@@ -9,7 +9,7 @@
 - [ ] Use sockets to sync between clients - FCM?
     - [x] Really fucking crude way
     - [x] Actually connect
-    - [ ] Basic
+    - [x] Basic
     - [ ] Disconnect when not active
 - [ ] Delete button on hover
 - [ ] Backgrounds

@@ -8,6 +8,13 @@ import { Server } from "socket.io";
 
 import { routes } from "./router";
 
+interface ClientToServerEvents {
+
+}
+interface ServerToClientEvents {
+    itemsUpdated: () => void
+}
+
 const app = express();
 
 const proxyInstance = createProxyServer({
@@ -22,13 +29,14 @@ const proxyInstance = createProxyServer({
 
 const expressServer = createServer(app);
 
-const io = new Server(expressServer);
+export const io = new Server<ClientToServerEvents, ServerToClientEvents>(expressServer);
 
 // app.use(cors());
 app.use(bodyParser.json());
 routes(app);
 
 app.get("/*", (req, res) => {
+    // console.log(req.url)
     proxyInstance.web(req, res, {});
 })
 

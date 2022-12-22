@@ -1,3 +1,5 @@
+import {io} from "./server"
+
 let id = 0;
 
 export type Item = {
@@ -17,10 +19,14 @@ export function addItem(text: string) {
         date: undefined,
         description: "",
     })
+
+    io.emit("itemsUpdated")
 }
 
 export function clear() {
     itemList = [] as Item[];
+
+    io.emit("itemsUpdated")
 }
 
 export function itemFromObject(obj: object): Item | undefined {
@@ -47,10 +53,14 @@ export function modifyItem(item: Item) {
     }
 
     itemList[index] = item;
+    
+    io.emit("itemsUpdated")
 }
 
 export function deleteItem(id: number) {
     itemList.splice(getItemIndexById(id), 1);
+    
+    io.emit("itemsUpdated")
 }
 
 // util functions 

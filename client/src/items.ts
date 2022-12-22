@@ -139,7 +139,7 @@ export function updateFromResponse(response: Response) {
             throw new Error("Network response was not OK");
         }
 
-        fetchItems();
+        // fetchItems();
     } 
     catch (error) {
         console.error(error)
