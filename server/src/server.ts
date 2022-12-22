@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 routes(app);
 
 app.get("/*", (req, res) => {
+    console.log(req.url)
     proxyInstance.web(req, res, {});
 })
 
