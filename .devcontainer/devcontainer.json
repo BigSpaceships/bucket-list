@@ -1,5 +1,19 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-  }
+},
+"customizations": {
+	"vscode": {
+		"extensions": [
+			"Vue.volar",
+			"Vue.vscode-typescript-vue-plugin",
+			"VisualStudioExptTeam.intellicode-api-usage-examples",
+			"VisualStudioExptTeam.vscodeintellicode",
+			"ecmel.vscode-html-css",
+			"eamodio.gitlens",
+			"dbaeumer.vscode-eslint",
+			"cpylua.language-postcss"
+		]
+	}
+}
 }
