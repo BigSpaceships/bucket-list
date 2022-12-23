@@ -1,16 +1,17 @@
 - [x] Select active item
+- [ ] Hook up to database 
 - [ ] Render info about item 
     - [x] Name 
     - [x] Delete button
     - [ ] Date completed (calender maybe?)
     - [x] Description 
     - [ ] Images?
-- [ ] Hook up to database 
 - [ ] Use sockets to sync between clients - FCM?
     - [x] Really fucking crude way
     - [x] Actually connect
     - [x] Basic
     - [ ] Disconnect when not active
-- [ ] Delete button on hover
 - [ ] Backgrounds
+- [ ] Delete button on hover
 - [x] Use routes for active items
+- [ ] Multiple lists?
