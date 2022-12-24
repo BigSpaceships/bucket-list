@@ -4,26 +4,31 @@ import cors from 'cors';
 import { createServer } from "http";
 import { createProxyServer } from "http-proxy";
 import proxy from "express-http-proxy";
+import dotenv from "dotenv";
 import { Server } from "socket.io";
+import { Schema, model, connect } from "mongoose";
 
 import { routes } from "./router";
+
+dotenv.config({ path: ".env.local" })
 
 interface ClientToServerEvents {
 
 }
 interface ServerToClientEvents {
-    itemsUpdated: () => void
+    itemsUpdated: () => void,
+    message: (message: string) => void,
 }
 
 const app = express();
 
 const proxyInstance = createProxyServer({
-    target: "http://127.0.0.1:5173", 
+    target: "http://127.0.0.1:5173",
     ws: true,
 });
 
 // const proxyServer = createServer(function (req, res) {
-    
+
 //     proxyInstance.web(req, res, )
 // });
 
@@ -37,7 +42,11 @@ routes(app);
 
 app.get("/*", (req, res) => {
     // console.log(req.url)
-    proxyInstance.web(req, res, {});
+    proxyInstance.web(req, res, {})
+})
+
+proxyInstance.on("error", (err, req, res) => {
+    res.end("whoops");
 })
 
 io.on("connection", (socket) => {
@@ -52,6 +61,30 @@ const port = 3000;
 
 expressServer.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
+})
+
+process.on("message", (msg) => {
+    if (msg == "stop") {
+        console.log("stopping");
+        process.exit()
+    }
+})
+
+process.on("SIGINT", () => {
+    console.log("stop");
+    process.exit();
+})
+
+process.on("SIGKILL", () => {
+    console.log("stop");
+    process.exit();
+})
+
+process.on("SIGTERM", () => {
+    io.emit("message", "kill");
+    io.close();
+    console.log("stop");
+    process.exit();
 })
 
 // proxyServer.listen(4001)

@@ -1,5 +1,7 @@
 namespace NodeJS {
     interface ProcessEnv {
-        HOST_IP: string;
+        DB_CONN_STRING: string;
+        DB_NAME: string;
+        
     }
 }

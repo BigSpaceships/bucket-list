@@ -10,7 +10,8 @@ interface ClientToServerEvents {
 
 }
 interface ServerToClientEvents {
-    itemsUpdated: () => void
+    itemsUpdated: () => void,
+    message: (message: string) => void,
 }
 
 const app = createApp(App)
@@ -22,6 +23,17 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
 
 socket.on("itemsUpdated", () => {
     fetchItems();
+})
+
+socket.on("message", (message) => {
+    console.log(message);
+    if (message == "kill") {
+        socket.disconnect();
+    }
+})
+
+socket.on("connect_error", (err) => {
+    console.log(err)
 })
 
 // window.setInterval(() => { // TODO: this breaks things

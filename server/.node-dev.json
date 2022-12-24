@@ -1,0 +1,4 @@
+{
+    "respawn": true,
+    "graceful-ipc": "stop"
+}
