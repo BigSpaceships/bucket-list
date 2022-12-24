@@ -67,7 +67,7 @@ expressServer.listen(port, () => {
 // console.log(io.eventNames())
 
 async function killServer() {
-    io.emit("message", "kill");
+    // io.emit("message", "kill"); 
     // await fetch("https://discord.com/api/webhooks/1056267187326824459/Tkj3SOWYWLGbnnptM-py2-h4wANfBtvH_PPGBe5-SCV8-_PDleyF_DWrHBqTUc3O2Fhn", {
     //     method: "post",
     //     headers: {
@@ -79,13 +79,13 @@ async function killServer() {
     // })
     console.log("stop?");
 
-    // const closePromise = new Promise((resolve, reject) => {
-    //     io.close(() => {
-    //         resolve(1);
-    //     })
-    // })
+    const closePromise = new Promise((resolve, reject) => {
+        io.close(() => {
+            resolve(1);
+        })
+    })
 
-    // await closePromise;
+    await closePromise;
 
 
     process.exit(0);
@@ -98,10 +98,10 @@ async function killServer() {
 //     }
 // })
 
-process.on("SIGINT", killServer)
+// process.on("SIGINT", killServer)
 
-process.on("SIGKILL", killServer)
+// process.on("SIGKILL", killServer)
 
-process.on("SIGTERM", killServer)
+process.on("SIGUSR2", killServer)
 
 // proxyServer.listen(4001)
