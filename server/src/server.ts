@@ -63,6 +63,21 @@ expressServer.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
 })
 
+// console.log(io.eventNames())
+
+async function killServer() {
+    io.emit("message", "kill");
+    console.log("stop");
+    const closePromise = new Promise((resolve, reject) => {
+        io.close(() => {
+            resolve(1);
+        })
+    })
+
+    await closePromise;
+    
+}
+
 process.on("message", (msg) => {
     if (msg == "stop") {
         console.log("stopping");
@@ -70,21 +85,10 @@ process.on("message", (msg) => {
     }
 })
 
-process.on("SIGINT", () => {
-    console.log("stop");
-    process.exit();
-})
+process.on("SIGINT", killServer)
 
-process.on("SIGKILL", () => {
-    console.log("stop");
-    process.exit();
-})
+process.on("SIGKILL", killServer)
 
-process.on("SIGTERM", () => {
-    io.emit("message", "kill");
-    io.close();
-    console.log("stop");
-    process.exit();
-})
+process.on("SIGTERM", killServer)
 
 // proxyServer.listen(4001)
