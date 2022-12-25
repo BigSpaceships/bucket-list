@@ -2,7 +2,7 @@ import { reactive } from "vue";
 import { useRoute } from "vue-router";
 
 export type Item = {
-    id: number;
+    id: string;
     text: string;
     completed: boolean;
     date?: Date;
@@ -17,15 +17,15 @@ export const items = reactive({
     itemList: [] as Item[],
 })
 
-export function getActiveId(): number {
+export function getActiveId(): string {
     const params = useRoute().params;
     if (params['id'] != undefined) {
-        if (!isNaN(Number(params['id']))) {
-            return Number(params['id']);
+        if (params['id'] !== undefined && typeof(params['id']) === "string") {
+            return params['id'];
         }
     }
 
-    return -1
+    return ""
 }
 
 // modifying functions
@@ -75,7 +75,7 @@ export function updateAllItems(items: object[]): Item[] {
     return itemList;
 }
 
-export function toggleItemCompleted(id: number) {
+export function toggleItemCompleted(id: string) {
     const index = getItemIndexById(id);
 
     const newItem = items.itemList[index];
@@ -102,11 +102,11 @@ export function deleteItem(id: number) {
 }
 
 // util functions 
-export function getItemById(id: number) {
+export function getItemById(id: string) {
     return items.itemList[getItemIndexById(id)]
 }
 
-export function getItemIndexById(id: number) {
+export function getItemIndexById(id: string) {
     return items.itemList.findIndex((item: Item) => {
         return item.id == id;
     })

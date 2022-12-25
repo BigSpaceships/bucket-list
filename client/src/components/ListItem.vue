@@ -6,7 +6,7 @@ import router from '../router/router';
 import { toId } from '../router/router';
     
 const props = defineProps({
-    itemId: Number,
+    itemId: String,
 })
 
 const item = computed(() => {

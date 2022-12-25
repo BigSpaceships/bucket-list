@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import { toggleItemCompleted, getItemById, getDefaultItem } from "../items";
 
 const props = defineProps({
-    id: Number
+    id: String
 })
 
 function toggleCompleted() {

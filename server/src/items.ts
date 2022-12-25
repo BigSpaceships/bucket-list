@@ -1,10 +1,12 @@
 import mongoose, { Schema } from "mongoose";
+import { v4 as uuidv4} from "uuid";
+
 import {io} from "./server"
 
 let id = 0;
 
 export type Item = {
-    id: number;
+    id: string;
     text: string;
     completed: boolean;
     date?: Date;
@@ -12,7 +14,7 @@ export type Item = {
 }
 
 export const itemSchema = new Schema<Item>({
-    id: { type: Number, required: true },
+    id: { type: String, required: true },
     text: { type: String, required: true },
     completed: { type: Boolean, required: true },
     date: Date,
@@ -30,8 +32,6 @@ export async function dbConnect() {
 export async function syncFromDb() {
     const items = await ItemModel.find();
 
-    console.log(items);
-
     itemList = [] as Item[];
     items.forEach((itemObject) => {
         const newItem = itemFromObject(itemObject);
@@ -48,13 +48,12 @@ export let itemList: Item[] = [] as Item[];
 
 export function addItem(text: string) {
     const newItem: Item = {
-        id: id++, // TODO: new method of ids
+        id: uuidv4(),
         text: text,
         completed: false,
         date: undefined,
         description: "boo",
     }
-    console.log("newItem");
 
     itemList.push(newItem)
 
@@ -64,9 +63,14 @@ export function addItem(text: string) {
     io.emit("itemsUpdated")
 }
 
-export function clear() {
+export async function clear() {
     itemList = [] as Item[];
-    ItemModel.deleteMany();
+
+    const items = await ItemModel.find();
+
+    items.forEach(item => {
+        item.delete();
+    });
 
     io.emit("itemsUpdated")
 }
@@ -101,14 +105,14 @@ export function modifyItem(item: Item) {
     // console.log("update")
 }
 
-export function deleteItem(id: number) {
+export function deleteItem(id: string) {
     itemList.splice(getItemIndexById(id), 1);
     
     io.emit("itemsUpdated")
 }
 
 // util functions 
-export function getItemIndexById(id: number) {
+export function getItemIndexById(id: string) {
     return itemList.findIndex((item: Item) => {
         return item.id == id;
     })
