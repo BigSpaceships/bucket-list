@@ -10,7 +10,8 @@ export type Item = {
 }
 
 // let id = 0;
-const apiURL = import.meta.env.VITE_API_URL;
+const apiURL = "https://" + window.location.host;
+// alert(apiURL);
 
 export const items = reactive({
     itemList: [] as Item[],

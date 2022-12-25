@@ -6,8 +6,8 @@ import { createProxyServer } from "http-proxy";
 import proxy from "express-http-proxy";
 import dotenv from "dotenv";
 import { Server } from "socket.io";
-import { Schema, model, connect } from "mongoose";
 
+import { dbConnect, syncFromDb } from "./items";
 import { routes } from "./router";
 
 dotenv.config({ path: ".env.local" })
@@ -20,21 +20,14 @@ interface ServerToClientEvents {
     message: (message: string) => void,
 }
 
-const app = express();
-
 const proxyInstance = createProxyServer({
     target: "http://127.0.0.1:5173",
     ws: true,
 });
 
-// const proxyServer = createServer(function (req, res) {
-
-//     proxyInstance.web(req, res, )
-// });
+const app = express();
 
 const expressServer = createServer(app);
-
-export const io = new Server<ClientToServerEvents, ServerToClientEvents>(expressServer);
 
 // app.use(cors());
 app.use(bodyParser.json());
@@ -49,8 +42,10 @@ proxyInstance.on("error", (err, req, res) => {
     res.end("whoops");
 })
 
+export const io = new Server<ClientToServerEvents, ServerToClientEvents>(expressServer);
+
 io.on("connection", (socket) => {
-    console.log(socket.id) // TODO: figure out why this is chashing things
+    console.log(socket.id)
 })
 
 expressServer.on("upgrade", (req, socket, head) => {
@@ -62,6 +57,8 @@ const port = 3000;
 expressServer.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
 })
+
+dbConnect().then(syncFromDb);
 
 async function killServer() {
     const closePromise = new Promise((resolve, reject) => {

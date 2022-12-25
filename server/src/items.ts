@@ -22,33 +22,51 @@ export const itemSchema = new Schema<Item>({
 export const ItemModel = mongoose.model<Item>("Item", itemSchema);
 
 export async function dbConnect() {
+    mongoose.set('strictQuery', false)
     if (process.env.DB_CONN_STRING === undefined) throw new Error("No database");
     await mongoose.connect(process.env.DB_CONN_STRING);
+}
 
-    const item = new ItemModel({
-        id: 0,
-        text: "Hi babe",
-        completed: false,
-        description: "",
+export async function syncFromDb() {
+    const items = await ItemModel.find();
+
+    console.log(items);
+
+    itemList = [] as Item[];
+    items.forEach((itemObject) => {
+        const newItem = itemFromObject(itemObject);
+
+        if (newItem === undefined) return;
+
+        itemList.push(newItem);
     })
+
+    io.emit("itemsUpdated");
 }
 
 export let itemList: Item[] = [] as Item[];
 
 export function addItem(text: string) {
-    itemList.push({
-        id: id++,
+    const newItem: Item = {
+        id: id++, // TODO: new method of ids
         text: text,
         completed: false,
         date: undefined,
-        description: "",
-    })
+        description: "boo",
+    }
+    console.log("newItem");
+
+    itemList.push(newItem)
+
+    const newItemModel = new ItemModel(newItem);
+    newItemModel.save();
 
     io.emit("itemsUpdated")
 }
 
 export function clear() {
     itemList = [] as Item[];
+    ItemModel.deleteMany();
 
     io.emit("itemsUpdated")
 }

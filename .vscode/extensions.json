@@ -7,6 +7,7 @@
     "ecmel.vscode-html-css",
     "visualstudioexptteam.vscodeintellicode",
     "visualstudioexptteam.intellicode-api-usage-examples",
-    "cpylua.language-postcss"
+    "cpylua.language-postcss",
+    "nixon.env-cmd-file-syntax"
   ]
 }

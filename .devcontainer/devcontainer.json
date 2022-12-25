@@ -12,7 +12,8 @@
 			"ecmel.vscode-html-css",
 			"eamodio.gitlens",
 			"dbaeumer.vscode-eslint",
-			"cpylua.language-postcss"
+			"cpylua.language-postcss",
+			"Nixon.env-cmd-file-syntax"
 		]
 	}
 }
