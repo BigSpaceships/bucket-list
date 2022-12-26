@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TodoListView from "../views/TodoListView.vue";
+import LoginView from "../views/LoginView.vue";
 
 export function clearId() {
     toId(undefined);
@@ -16,6 +17,10 @@ export function toId(id: number | undefined) {
 
 const routes = [
     { path: '/', redirect: '/items/' },
+    { 
+        path: '/login/',
+        component: LoginView,
+    },
     {
         path: "/items/",
         component: TodoListView,
