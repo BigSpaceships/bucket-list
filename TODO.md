@@ -8,7 +8,7 @@
 - [ ] Animations 
 - [ ] Backgrounds
 --- 
-*SHOW JULIANA*
+# SHOW JULIANA
 - [ ] Render info about item 
     - [x] Name 
     - [x] Delete button
