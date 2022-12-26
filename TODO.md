@@ -1,5 +1,6 @@
 - [x] Select active item
-- [ ] Hook up to database 
+- [x] Hook up to database 
+- [ ] Authentication (:
 - [ ] Render info about item 
     - [x] Name 
     - [x] Delete button
