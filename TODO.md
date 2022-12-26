@@ -1,6 +1,14 @@
 - [x] Select active item
 - [x] Hook up to database 
 - [ ] Authentication (:
+    - [x] Setup path
+    - [ ] Login request to server
+    - [ ] Save cookie 
+    - [ ] Redirect away if not logged in 
+- [ ] Animations 
+- [ ] Backgrounds
+--- 
+*SHOW JULIANA*
 - [ ] Render info about item 
     - [x] Name 
     - [x] Delete button
@@ -12,7 +20,6 @@
     - [x] Actually connect
     - [x] Basic
     - [ ] Disconnect when not active
-- [ ] Backgrounds
 - [ ] Delete button on hover
 - [x] Use routes for active items
 - [ ] Multiple lists?
