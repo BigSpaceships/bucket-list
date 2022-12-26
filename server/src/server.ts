@@ -1,10 +1,10 @@
-import express from "express";
 import bodyParser from "body-parser";
 import cors from 'cors';
+import dotenv from "dotenv";
+import express from "express";
 import { createServer } from "http";
 import { createProxyServer } from "http-proxy";
-import proxy from "express-http-proxy";
-import dotenv from "dotenv";
+import mongoose from "mongoose";
 import { Server } from "socket.io";
 
 import { dbConnect, syncFromDb } from "./items";
@@ -68,6 +68,10 @@ async function killServer() {
     })
 
     await closePromise;
+
+    await mongoose.disconnect();
+
+    console.log("gracefully shut down")
 
     process.exit(0);
 }

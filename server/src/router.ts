@@ -35,10 +35,6 @@ export function routes(app: Express) {
     app.post('/api/delete-item', (req, res) => {
         const id = req.body.id;
     
-        if (isNaN(id)) {
-            return; // TODO: error
-        }
-    
         deleteItem(id);
     
         res.status(200).end();

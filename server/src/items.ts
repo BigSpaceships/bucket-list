@@ -18,7 +18,7 @@ export const itemSchema = new Schema<Item>({
     text: { type: String, required: true },
     completed: { type: Boolean, required: true },
     date: Date,
-    description: {type: String, required: true},
+    description: {type: String, required: false},
 })
 
 export const ItemModel = mongoose.model<Item>("Item", itemSchema);
@@ -31,6 +31,8 @@ export async function dbConnect() {
 
 export async function syncFromDb() {
     const items = await ItemModel.find();
+
+    // console.log(items);
 
     itemList = [] as Item[];
     items.forEach((itemObject) => {
@@ -52,7 +54,7 @@ export function addItem(text: string) {
         text: text,
         completed: false,
         date: undefined,
-        description: "boo",
+        description: "",
     }
 
     itemList.push(newItem)
@@ -89,7 +91,7 @@ export function itemFromObject(obj: object): Item | undefined {
     return item;
 }
 
-export function modifyItem(item: Item) {
+export async function modifyItem(item: Item) {
     const index = itemList.findIndex((value: Item) => {
         return item.id == value.id 
     })
@@ -99,15 +101,19 @@ export function modifyItem(item: Item) {
     }
 
     itemList[index] = item;
-    
-    io.emit("itemsUpdated")
 
-    // console.log("update")
+    await ItemModel.updateOne({id: item.id}, item);
+
+    io.emit("itemsUpdated")
 }
 
-export function deleteItem(id: string) {
+export async function deleteItem(id: string) {
     itemList.splice(getItemIndexById(id), 1);
     
+    console.log(id);
+
+    await ItemModel.deleteOne({id: id});
+
     io.emit("itemsUpdated")
 }
 

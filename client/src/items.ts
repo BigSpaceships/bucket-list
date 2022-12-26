@@ -89,7 +89,7 @@ export function toggleItemCompleted(id: string) {
     updateItem(newItem);
 }
 
-export function deleteItem(id: number) {
+export function deleteItem(id: string) {
     fetch(apiURL + "/api/delete-item", {
         method: "POST",
         body: JSON.stringify({
