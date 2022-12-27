@@ -2,9 +2,9 @@
 - [x] Hook up to database 
 - [ ] Authentication (:
     - [x] Setup path
-    - [ ] Login request to server
+    - [x] Login request to server
     - [ ] Save cookie 
-    - [ ] Redirect away if not logged in 
+    - [x] Redirect away if not logged in 
 - [ ] Animations 
 - [ ] Backgrounds
 - [ ] Date completed edit

@@ -39,4 +39,10 @@ export function routes(app: Express) {
     
         res.status(200).end();
     })
+
+    app.post('/api/login', (req, res) => {
+        res.json({
+            success: req.body.password == "hi"
+        })
+    })
 }

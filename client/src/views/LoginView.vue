@@ -1,16 +1,46 @@
 <script lang="ts" setup>
 import { login } from '@/main';
+import {apiURL} from "../items";
+
+import { reactive } from 'vue';
+
+const formData = reactive({
+    name: "",
+    password: "",
+})
+
+async function tryLogin() {
+// alert(apiURL)
+    fetch(apiURL + "/api/login", {
+        method: "POST",
+        body: JSON.stringify({
+            username: formData.name,
+            password: formData.password,
+        }),
+        headers: {
+            "content-type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(response => {
+        if (response.success == true) {
+            login(response.body)
+        } else {
+            alert("no.")
+        }
+    })
+}
 </script>
 
 <template>
     <div id="container">
-        <form id="login-box" @submit.prevent="login">
+        <form id="login-box" @submit.prevent="tryLogin">
             <h1 class="login-header">Login</h1>
 
             <label for="login-name">Name</label>
-            <input id="login-name"/>
+            <input id="login-name" v-model="formData.name"/>
             <label for="login-password">Password</label>
-            <input type="password" id="login-password">
+            <input type="password" id="login-password" v-model="formData.password">
 
             <button type="submit">Login</button>
         </form>

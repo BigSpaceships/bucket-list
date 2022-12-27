@@ -10,7 +10,7 @@ export type Item = {
 }
 
 // let id = 0;
-const apiURL = "https://" + window.location.host;
+export const apiURL = window.location.protocol + "//" + window.location.host;
 // alert(apiURL);
 
 export const items = reactive({

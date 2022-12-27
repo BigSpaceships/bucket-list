@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/router'
 
 import { socket } from './socket'
+import { apiURL } from './items'
 
 import './assets/main.css'
 
@@ -13,10 +14,10 @@ app.mount('#app')
 
 export let loggedIn = false;
 
-export function login() {
+export function login(response: any) {
     loggedIn = true;
 
-    router.push({name: "home"})
+    router.push({ name: "home"})
 }
 
 // window.setInterval(() => { // TODO: this breaks things

@@ -45,7 +45,7 @@ proxyInstance.on("error", (err, req, res) => {
 export const io = new Server<ClientToServerEvents, ServerToClientEvents>(expressServer);
 
 io.on("connection", (socket) => {
-    console.log(socket.id)
+    // console.log(socket.id)
 })
 
 expressServer.on("upgrade", (req, socket, head) => {
