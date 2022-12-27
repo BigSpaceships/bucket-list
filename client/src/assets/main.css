@@ -18,8 +18,8 @@ input, textarea, button {
     all: unset;
 }
 
-button {
+/* button {
     border: 2px solid var(--accent-color);
     border-radius: 2px;
     padding: 2px;
-}
+} */
