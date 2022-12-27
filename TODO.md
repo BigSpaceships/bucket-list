@@ -7,8 +7,9 @@
     - [ ] Redirect away if not logged in 
 - [ ] Animations 
 - [ ] Backgrounds
+- [ ] Date completed edit
 --- 
-*SHOW JULIANA*
+# SHOW JULIANA
 - [ ] Render info about item 
     - [x] Name 
     - [x] Delete button
