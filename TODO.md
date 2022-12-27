@@ -7,6 +7,7 @@
     - [ ] Redirect away if not logged in 
 - [ ] Animations 
 - [ ] Backgrounds
+- [ ] Date completed edit
 --- 
 # SHOW JULIANA
 - [ ] Render info about item 
