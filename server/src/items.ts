@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { v4 as uuidv4} from "uuid";
+// import { v4 as uuidv4} from "uuid";
+import shortUUID from "short-uuid";
 
 import {io} from "./server"
 
@@ -50,7 +51,7 @@ export let itemList: Item[] = [] as Item[];
 
 export function addItem(text: string) {
     const newItem: Item = {
-        id: uuidv4(),
+        id: shortUUID.generate(),
         text: text,
         completed: false,
         date: undefined,
