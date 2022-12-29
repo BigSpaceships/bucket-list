@@ -16,11 +16,12 @@
     - [ ] Date completed (calender maybe?)
     - [x] Description 
     - [ ] Images?
-- [ ] Use sockets to sync between clients - FCM?
+- [x] Use sockets to sync between clients - FCM?
     - [x] Really fucking crude way
     - [x] Actually connect
     - [x] Basic
     - [ ] Disconnect when not active
 - [ ] Delete button on hover
+- [ ] Hide some items
 - [x] Use routes for active items
 - [ ] Multiple lists?
