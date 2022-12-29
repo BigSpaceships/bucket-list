@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { reactive } from "vue";
 import ListItem from "./ListItem.vue";
 import NewListItemInput from "./NewListItemInput.vue";
 // import type { Todo } from "../todos";

@@ -1,7 +1,6 @@
-import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import TodoListView from "../views/TodoListView.vue";
 import LoginView from "../views/LoginView.vue";
-import { loggedIn } from '../main';
 
 export function clearId() {
     toId(undefined);
@@ -22,13 +21,13 @@ const routes = [
         path: '/login/',
         component: LoginView,
         name: "login",
-        beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+        // beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
             // if (!loggedIn) {
             //     return true;
             // }
 
             // return { name: "home" }
-        }
+        // }
     },
     {
         path: "/items/",
@@ -46,10 +45,10 @@ const router = createRouter({
     routes
 })
 
-router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+// router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     // if (!loggedIn && to.name !== "login") {
     //     return { name: "login"}
     // }
-})
+// })
 
 export default router

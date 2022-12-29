@@ -4,9 +4,6 @@ import { createAuth0} from '@auth0/auth0-vue';
 import App from './App.vue'
 import router from './router/router'
 
-import { socket } from './socket'
-import { apiURL } from './items'
-
 import './assets/main.css'
 
 const app = createApp(App)

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Checkbox from './ItemCheckbox.vue'
-import { getActiveId, getItemById, getDefaultItem, items } from "../items"
-import router from '../router/router';
+import { getActiveId, getItemById, getDefaultItem } from "../items"
 import { toId } from '../router/router';
     
 const props = defineProps({

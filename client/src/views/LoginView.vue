@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { login } from '@/main';
-import {apiURL} from "../items";
 import { useAuth0 } from '@auth0/auth0-vue';
 
-import { reactive, computed } from 'vue';
+import { reactive } from 'vue';
 
 const { loginWithRedirect } = useAuth0();
 
@@ -81,11 +79,11 @@ async function tryLogin() {
         display:block;
     }
 
-    h1 {
-        /* text-align: center; */
-        /* margin-bottom: 20px; */
-        /* background-color: red; */
-    }
+    /* h1 { 
+        text-align: center;
+        margin-bottom: 20px;
+        background-color: red;
+    } */
 
     button {
         text-align: center;
