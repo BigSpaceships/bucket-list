@@ -9,6 +9,12 @@ export type Item = {
     description: string;
 }
 
+export let token: string = "";
+
+export function setToken(newToken: string) { 
+    token = newToken;
+}
+
 // let id = 0;
 export const apiURL = window.location.protocol + "//" + window.location.host;
 // alert(apiURL);
@@ -29,14 +35,15 @@ export function getActiveId(): string {
 }
 
 // modifying functions
-export function addItem(text: string): void {
+export function addItem(text: string) {
     fetch(apiURL + "/api/new-item", {
         method: "POST",
         body: JSON.stringify({
             text: text
         }),
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            Authorization: "Bearer " + token,
         }
     }).then(updateFromResponse);
 }
@@ -55,7 +62,8 @@ export function updateItem(item: Item) {
             item: item,
         }),
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            Authorization: "Bearer " + token,
         }
     }).then(updateFromResponse);
 }
@@ -96,7 +104,8 @@ export function deleteItem(id: string) {
             id: id,
         }),
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            Authorization: "Bearer " + token,
         }
     }).then(updateFromResponse);
 }
@@ -148,10 +157,12 @@ export function updateFromResponse(response: Response) {
 }
 
 export function fetchItems() {
+    console.log(token)
     fetch(apiURL + "/api/items", {
         method: "GET",
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            Authorization: "Bearer " + token,
         }
     }).then(response => response.json())
         .then((response) => {

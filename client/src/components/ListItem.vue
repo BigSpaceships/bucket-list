@@ -53,7 +53,7 @@ const item = computed(() => {
 .selected, .border:hover {
     background-color: #555;
 }
-
+ 
 .overview-text {
     /* margin: 4px; */
     height: 100%;

@@ -1,20 +1,20 @@
 import { Express } from "express";
-import { expressjwt, GetVerificationKey} from "express-jwt";
+import {expressjwt as jwt, GetVerificationKey} from "express-jwt";
 import JwksRsa from "jwks-rsa";
 import {addItem, clear, deleteItem, itemFromObject, itemList, modifyItem} from "./items";
 
 export function routes(app: Express) {
-    const jwtCheck = expressjwt({
+    const jwtCheck = jwt({
         secret: JwksRsa.expressJwtSecret({
             cache: true,
             rateLimit: true,
             jwksRequestsPerMinute: 5,
-            jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
-        }) as GetVerificationKey,
-        audience: process.env.AUTH0_DOMAIN,
-        issuer: `https://${process.env.AUTH0_AUDIENCE}`,
-        algorithms: ['RS256']
-    });
+            jwksUri: 'https://dev-bucket-list.us.auth0.com/.well-known/jwks.json'
+      }) as GetVerificationKey,
+      audience: 'https://bucket-list-api',
+      issuer: 'https://dev-bucket-list.us.auth0.com/',
+      algorithms: ['RS256']
+  });
 
     app.get('/api/items', jwtCheck, (req, res) => {
         res.json({

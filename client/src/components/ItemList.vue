@@ -5,8 +5,6 @@ import NewListItemInput from "./NewListItemInput.vue";
 import { items, fetchItems } from '../items';
 import { clearId } from "@/router/router";
 
-fetchItems();
-
 </script>
 
 <template>
