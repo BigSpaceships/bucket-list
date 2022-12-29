@@ -3,7 +3,7 @@ import { login } from '@/main';
 import {apiURL} from "../items";
 import { useAuth0 } from '@auth0/auth0-vue';
 
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 
 const { loginWithRedirect } = useAuth0();
 
@@ -11,6 +11,7 @@ const formData = reactive({
     name: "",
     password: "",
 })
+// const domain = computed(() => import.meta.env.VITE_AUTH0_DOMAIN)
 
 async function tryLogin() {
 // alert(apiURL)
