@@ -2,9 +2,11 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import dotenv from "dotenv";
 import express from "express";
+import helmet from "helmet";
 import { createServer } from "http";
 import { createProxyServer } from "http-proxy";
 import mongoose from "mongoose";
+import morgan from "morgan";
 import { Server } from "socket.io";
 
 import { dbConnect, syncFromDb } from "./items";
@@ -29,8 +31,13 @@ const app = express();
 
 const expressServer = createServer(app);
 
+app.use(helmet())
+
 // app.use(cors());
 app.use(bodyParser.json());
+
+app.use(morgan("tiny"));
+
 routes(app);
 
 app.get("/*", (req, res) => {

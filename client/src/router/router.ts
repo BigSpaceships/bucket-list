@@ -23,11 +23,11 @@ const routes = [
         component: LoginView,
         name: "login",
         beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-            if (!loggedIn) {
-                return true;
-            }
+            // if (!loggedIn) {
+            //     return true;
+            // }
 
-            return { name: "home" }
+            // return { name: "home" }
         }
     },
     {
@@ -47,9 +47,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-    if (!loggedIn && to.name !== "login") {
-        return { name: "login"}
-    }
+    // if (!loggedIn && to.name !== "login") {
+    //     return { name: "login"}
+    // }
 })
 
 export default router

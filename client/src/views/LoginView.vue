@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import { login } from '@/main';
 import {apiURL} from "../items";
+import { useAuth0 } from '@auth0/auth0-vue';
 
 import { reactive } from 'vue';
+
+const { loginWithRedirect } = useAuth0();
 
 const formData = reactive({
     name: "",
@@ -11,24 +14,25 @@ const formData = reactive({
 
 async function tryLogin() {
 // alert(apiURL)
-    fetch(apiURL + "/api/login", {
-        method: "POST",
-        body: JSON.stringify({
-            username: formData.name,
-            password: formData.password,
-        }),
-        headers: {
-            "content-type": "application/json"
-        }
-    })
-    .then(response => response.json())
-    .then(response => {
-        if (response.success == true) {
-            login(response.body)
-        } else {
-            alert("no.")
-        }
-    })
+    // fetch(apiURL + "/api/login", {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //         username: formData.name,
+    //         password: formData.password,
+    //     }),
+    //     headers: {
+    //         "content-type": "application/json"
+    //     }
+    // })
+    // .then(response => response.json())
+    // .then(response => {
+    //     if (response.success == true) {
+    //         login(response.body)
+    //     } else {
+    //         alert("no.")
+    //     }
+    // })
+    loginWithRedirect();
 }
 </script>
 
