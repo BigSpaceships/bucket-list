@@ -16,6 +16,7 @@
     - [ ] Date completed (calender maybe?)
     - [x] Description 
     - [ ] Images?
+- [ ] Categories or tags
 - [x] Use sockets to sync between clients - FCM?
     - [x] Really fucking crude way
     - [x] Actually connect
