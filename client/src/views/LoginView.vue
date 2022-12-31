@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useAuth0 } from '@auth0/auth0-vue';
+import { RouterView } from 'vue-router';
 
 import { reactive } from 'vue';
 
@@ -12,41 +13,15 @@ const formData = reactive({
 // const domain = computed(() => import.meta.env.VITE_AUTH0_DOMAIN)
 
 async function tryLogin() {
-// alert(apiURL)
-    // fetch(apiURL + "/api/login", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //         username: formData.name,
-    //         password: formData.password,
-    //     }),
-    //     headers: {
-    //         "content-type": "application/json"
-    //     }
-    // })
-    // .then(response => response.json())
-    // .then(response => {
-    //     if (response.success == true) {
-    //         login(response.body)
-    //     } else {
-    //         alert("no.")
-    //     }
-    // })
     loginWithRedirect();
 }
 </script>
 
 <template>
     <div id="container">
-        <form id="login-box" @submit.prevent="tryLogin">
-            <h1 class="login-header">Login</h1>
-
-            <label for="login-name">Name</label>
-            <input id="login-name" v-model="formData.name"/>
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" v-model="formData.password">
-
-            <button type="submit">Login</button>
-        </form>
+        <div id="login-box">
+            <RouterView/>
+        </div>
     </div>
 </template>
 
@@ -67,11 +42,11 @@ async function tryLogin() {
     /* padding-left: 50px;
     padding-right: 50px; */
 
-    /* width: 40vw; */
-    /* height: 30vh; */
+    width: 20vw;
+    height: 30vh;
 
     background-color: #333;
-    label {
+    /* label {
         margin-top: 14px;
     }
 
@@ -83,7 +58,7 @@ async function tryLogin() {
         text-align: center;
         margin-bottom: 20px;
         background-color: red;
-    } */
+    } 
 
     button {
         text-align: center;
@@ -100,7 +75,7 @@ async function tryLogin() {
     }
 
     input {
-        /* border: 2px solid ; */
+        /* border: 2px solid ; 
         border-radius: 2px;
 
         background-color: var(--accent-background-color);
@@ -113,6 +88,6 @@ async function tryLogin() {
         margin-top: 4px;
 
         padding-left: 2px;
-    }
+    }*/
 }
 </style>

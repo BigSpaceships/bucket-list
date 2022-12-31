@@ -8,10 +8,6 @@ import { onMounted } from "vue";
 const { getAccessTokenSilently } = useAuth0();
 
 onMounted(async () => {
-    
-    const token = await getAccessTokenSilently();
-
-    console.log(token);
     setToken(await getAccessTokenSilently())
 
     fetchItems()
