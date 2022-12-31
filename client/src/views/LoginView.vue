@@ -1,26 +1,37 @@
 <script lang="ts" setup>
-import { useAuth0 } from '@auth0/auth0-vue';
 import { RouterView } from 'vue-router';
 
-import { reactive } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 
-const { loginWithRedirect } = useAuth0();
+import imgURL from "../assets/mine.png";
+
+const mineImage = ref<HTMLImageElement | null>(null)
+
+onMounted(() => {
+    if (mineImage.value != null) { 
+        mineImage.value.src = imgURL;
+    }
+})
 
 const formData = reactive({
     name: "",
     password: "",
 })
-// const domain = computed(() => import.meta.env.VITE_AUTH0_DOMAIN)
-
-async function tryLogin() {
-    loginWithRedirect();
-}
 </script>
 
 <template>
     <div id="container">
         <div id="login-box">
-            <RouterView/>
+
+            <h1>
+                Hi Stupid
+            </h1>
+
+            <img class="mine-image" ref="mineImage">
+
+            <div class="login-inputs">
+                <RouterView/>
+            </div>
         </div>
     </div>
 </template>
@@ -46,6 +57,27 @@ async function tryLogin() {
     height: 30vh;
 
     background-color: #333;
+
+    display: flex;
+    flex-direction: column;
+
+
+
+    h1 {
+        text-align: center;
+        margin: 0;
+    }
+
+    img {
+        height: 20vh;
+        object-fit: contain;
+    }
+
+    .login-inputs {
+        margin-top: auto;
+
+    }
+    
     /* label {
         margin-top: 14px;
     }
